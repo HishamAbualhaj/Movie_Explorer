@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@theme {
+  
+  --font-sans: var(--font-manrope);
+  --color-primary: #d1001f;
+  --color-primary-light: #ff2e40;
+  --color-primary-dark: #8a0015;
+
+  --color-bg: #0d0d0d;
+  --color-bg-light: #161616;
+  --color-bg-dark: #000000;
+
+  --color-border: #2b2b2b;
+
+  --color-text-main: #ffffff;
+  --color-text-secondary: #b3b3b3;
+  --color-text-muted: #7a7a7a;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-manrope), sans-serif;
+  }
+}
