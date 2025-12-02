@@ -1,6 +1,5 @@
-// src/app/support/page.tsx
 import { SupportHero } from '@/components/layouts/Support/SupportHero';
-import { SupportForm } from '@/components/layouts/Support/SupportForm';
+import { SupportForm } from '@/components/layouts/Support/SupportForm/SupportForm';
 import { SupportFAQ } from '@/components/layouts/Support//SupportFAQ/SupportFAQ';
 import { SupportCTA } from '@/components/layouts/Support/SupportCTA';
 
