@@ -1,6 +1,11 @@
-import Button from "@/components/ui/Button";
-import { PlayIcon } from "lucide-react";
+import Hero from "@/components/layouts/Landing/Hero";
 
 export default function Home() {
-  return <div className="h-screen"></div>;
+  return (
+    <>
+      <div className="h-screen">
+        <Hero />
+      </div>
+    </>
+  );
 }
