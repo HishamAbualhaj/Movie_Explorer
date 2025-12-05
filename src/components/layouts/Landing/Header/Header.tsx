@@ -16,7 +16,7 @@ export const navs = [
   },
   {
     title: "Support",
-    link: "/",
+    link: "/support",
     active: false,
   },
   {
