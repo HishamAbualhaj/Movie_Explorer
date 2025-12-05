@@ -7,7 +7,7 @@ interface Props {
 
 export default function FavouritesList({ movies }: Props) {
   if (!movies.length) {
-    return <p className="text-gray-400 text-lg">You haven’t added any favourites yet.</p>;
+    return <p className="text-text-secondary text-lg">You haven’t added any favourites yet.</p>;
   }
 
   return (
