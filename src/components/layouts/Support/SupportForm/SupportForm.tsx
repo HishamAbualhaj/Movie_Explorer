@@ -40,11 +40,12 @@ export function SupportForm() {
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    // we put the logic of the submit button in here
     console.log(form);
   }
 
   return (
-    <section className="w-full py-12 md:py-16 max-w-6xl mx-auto px-4">
+    <section id='support-form' className="w-full py-12 md:py-16 max-w-6xl mx-auto px-4">
         <div className="rounded-3xl  bg-bg-light p-6 md:p-8 lg:p-10">
           <h2 className="text-2xl md:text-3xl font-semibold mb-2">
             Contact Us

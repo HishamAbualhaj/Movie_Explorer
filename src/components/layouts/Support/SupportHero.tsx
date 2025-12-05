@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import heroImg from './support-cta-image.png';
+import heroImg from './assets/support-cta-image.png';
 
 export function SupportHero() {
   return (

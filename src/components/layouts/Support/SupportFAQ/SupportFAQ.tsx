@@ -11,6 +11,11 @@ export function SupportFAQ() {
     setOpenId((prev) => (prev === id ? null : id));
   };
 
+  const handleButtonClick = () => {
+    const formSection = document.getElementById("support-form");
+    formSection?.scrollIntoView({ behavior: "smooth" });
+  }
+
   return (
     <section className="w-full bg-bg py-16 md:py-20 flex justify-center">
       <div className="w-full max-w-6xl px-4">
@@ -27,7 +32,10 @@ export function SupportFAQ() {
           </div>
 
           <div className="mt-6 md:mt-0">
-            <button className="bg-primary text-white px-6 py-3 rounded-xl font-medium hover:opacity-90 transition">
+            <button
+              onClick = {handleButtonClick}
+              className="bg-primary text-white px-6 py-3 rounded-xl font-medium hover:opacity-90 transition"
+            >
               Ask a Question
             </button>
           </div>

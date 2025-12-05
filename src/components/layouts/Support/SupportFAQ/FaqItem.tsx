@@ -9,7 +9,8 @@ type Props = {
 
 export function FaqItem({ item, index, isOpen, onToggle }: Props) {
   return (
-    <div className="border-b border-red-600 pb-6">
+    <div className="relative pb-6 after:absolute after:left-0 after:bottom-0 after:w-full after:h-0.5 
+           after:bg-linear-to-r after:from-black after:via-red-600 after:to-black">
       <button
         onClick={onToggle}
         className="w-full flex items-start justify-between gap-4 text-left"
