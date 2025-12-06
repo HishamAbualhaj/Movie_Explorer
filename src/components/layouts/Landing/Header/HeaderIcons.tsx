@@ -1,4 +1,6 @@
-import { BellRing, Search } from "lucide-react";
+import HeartButton from "@/components/ui/HeartButton";
+import { BellRing, HeartIcon, Search } from "lucide-react";
+import Link from "next/link";
 
 const HeaderIcons = ({ isMobile }: { isMobile: boolean }) => {
   return (
@@ -7,6 +9,7 @@ const HeaderIcons = ({ isMobile }: { isMobile: boolean }) => {
         isMobile ? "" : "max-md:hidden"
       }`}
     >
+      <Link href="/favourites" className="inline-block"><HeartIcon /></Link>
       <Search />
       <BellRing />
     </div>
