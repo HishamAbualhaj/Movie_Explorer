@@ -75,14 +75,14 @@ const Footer = () => {
   return (
     <div className="bg-black px-5">
       <div className="max-w-[1600px] mx-auto">
-        <footer className="grid lg:grid-cols-6 md:grid-cols-3 grid-cols-2 py-16 max-lg:gap-5">
+        <footer className="grid lg:grid-cols-6 md:grid-cols-3 grid-cols-2 py-8 max-lg:gap-5">
           {footerItems.map((item, i) => (
             <div key={i} className="flex-1">
               <div className="text-white">{item.title}</div>
               <div
                 className={`flex flex-wrap ${
                   i === 5 ? "sm:flex-row" : "flex-col "
-                } mt-5 gap-3`}
+                } mt-3 gap-2`}
               >
                 {item.links.map((link, indx) => (
                   <Link
