@@ -1,7 +1,7 @@
 "use client";
 
 import { Movie } from "@/types/movie";
-import { useFavouritesStore } from "@/stores/useFavouritesStore";
+import { useFavouritesStore } from "@/stores/favouritesStore";
 import HeartButton from "@/components/ui/HeartButton";
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 
 export default function FavouriteCard({ movie }: Props) {
   const removeFromFavourites = useFavouritesStore(
-    (state) => state.removeFromFavourites
+    (state) => state.removeFavourite
   );
 
   const hasPoster = !!movie.poster;

@@ -1,12 +1,16 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { Movie } from "../types/movie";
+import { Movie } from "@/types/movie";
+import { favouriteMovies } from "@/data/FavouriteMovies"; //temporary
 
 type FavouritesState = {
   favourites: Movie[];
   addFavourite: (movie: Movie) => void;
   removeFavourite: (id: string) => void;
   isFavourite: (id: string) => boolean;
+
+  // if you still want to load initial data
+  loadInitialData: () => void;
 };
 
 export const useFavouritesStore = create<FavouritesState>()(
@@ -14,9 +18,15 @@ export const useFavouritesStore = create<FavouritesState>()(
     (set, get) => ({
       favourites: [],
 
+      loadInitialData: () => {
+        set(() => ({
+          favourites: favouriteMovies,
+        }));
+      },
+
       addFavourite: (movie) =>
         set((state) => {
-          if (state.favourites.find((m) => m.id === movie.id)) return state;
+          if (state.favourites.some((m) => m.id === movie.id)) return state;
           return { favourites: [...state.favourites, movie] };
         }),
 
@@ -28,6 +38,8 @@ export const useFavouritesStore = create<FavouritesState>()(
       isFavourite: (id) =>
         get().favourites.some((m) => m.id === id),
     }),
-    { name: "favourites-storage" }
+    {
+      name: "favourites-storage", 
+    }
   )
 );

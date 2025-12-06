@@ -2,14 +2,14 @@
 
 import { useEffect, useState } from "react";
 import FavouritesList from "@/components/layouts/Favourites/FavouritesList";
-import { useFavouritesStore } from "@/stores/useFavouritesStore";
+import { useFavouritesStore } from "@/stores/favouritesStore";
 import Link from "next/link";
 import Button from "@/components/ui/Button";
 import { useAuthStore } from "@/stores/authStore";
 import LoginRequiredBox from "@/components/layouts/Favourites/LoginRequiredBox";
 
 export default function FavouritesPage() {
-  const movies = useFavouritesStore((state) => state.movies);
+  const movies = useFavouritesStore((state) => state.favourites);
   const loadInitialData = useFavouritesStore((state) => state.loadInitialData);
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
 
