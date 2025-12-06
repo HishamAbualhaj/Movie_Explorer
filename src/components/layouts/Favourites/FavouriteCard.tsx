@@ -1,8 +1,8 @@
 "use client";
 
 import { Movie } from "@/types/movie";
-import { Heart } from "lucide-react";
 import { useFavouritesStore } from "@/stores/useFavouritesStore";
+import HeartButton from "@/components/ui/HeartButton";
 
 interface Props {
   movie: Movie;
@@ -36,17 +36,10 @@ export default function FavouriteCard({ movie }: Props) {
         <div className="flex items-center justify-between mb-2">
           <h2 className="text-xl font-semibold">{movie.title}</h2>
 
-          <button
+          <HeartButton
+            filled={true}
             onClick={() => removeFromFavourites(movie.id)}
-            className="p-1"
-          >
-            <Heart
-              size={22}
-              className="cursor-pointer transition"
-              color="red"
-              fill="red"
-            />
-          </button>
+          />
         </div>
 
         <div className="text-text-secondary text-sm space-y-1">
