@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import FavouritesList from "@/components/layouts/Favourites/FavouritesList";
 import { useFavouritesStore } from "@/stores/useFavouritesStore";
 import Link from "next/link";
@@ -9,9 +9,17 @@ import Button from "@/components/ui/Button";
 export default function FavouritesPage() {
   const movies = useFavouritesStore((state) => state.movies);
   const loadInitialData = useFavouritesStore((state) => state.loadInitialData);
+  
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     loadInitialData();
+
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000); 
+
+    return () => clearTimeout(timer);
   }, [loadInitialData]);
 
   return (
@@ -26,8 +34,15 @@ export default function FavouritesPage() {
             </Button>
           </Link>
         </div>
-
-        <FavouritesList movies={movies} />
+        {loading ? (
+          <div className="w-full flex justify-center py-20">
+            <p className="text-text-secondary text-xl animate-pulse">
+              Loading your favourites...
+            </p>
+          </div>
+        ) : (
+          <FavouritesList movies={movies} />
+        )}
       </div>
     </section>
   );
