@@ -1,4 +1,3 @@
-import HeartButton from "@/components/ui/HeartButton";
 import { BellRing, HeartIcon, Search } from "lucide-react";
 import Link from "next/link";
 
