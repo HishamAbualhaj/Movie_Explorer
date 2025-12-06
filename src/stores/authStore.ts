@@ -10,9 +10,9 @@ type AuthState = {
 export const useAuthStore = create<AuthState>()(
   persist(
     (set) => ({
-      isLoggedIn: false,
-      login: () => set({ isLoggedIn: true }),
-      logout: () => set({ isLoggedIn: false }),
+      isLoggedIn: true, // this would be false, but for testing it is true
+      login: () => set({ isLoggedIn: true }), 
+      logout: () => set({ isLoggedIn: false }), 
     }),
     { name: "auth-storage" }
   )
