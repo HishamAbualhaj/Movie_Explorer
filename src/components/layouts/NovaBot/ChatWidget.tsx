@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { MessageCircle, SendHorizontal } from "lucide-react";
 import Button from "@/components/ui/Button";
@@ -12,8 +12,18 @@ type Message = {
 
 export default function NovaWidget() {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([]); 
+  const [messages, setMessages] = useState<Message[]>([]);
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+  const [input, setInput] = useState("");
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    containerRef.current.scrollTo({
+      top: containerRef.current.scrollHeight,
+      behavior: "smooth",
+    });
+  }, [messages]);
 
   useEffect(() => {
     if (isOpen) {
@@ -33,8 +43,17 @@ export default function NovaWidget() {
   }, [isOpen, isLoggedIn]);
 
   const handleSend = () => {
-    if (!isLoggedIn) return;
-    // add your send logic here
+    if (!isLoggedIn || !input.trim()) return;
+
+    setMessages((prev) => [
+      ...prev,
+      {
+        sender: "user",
+        text: input.trim(),
+      },
+    ]);
+
+    setInput("");
   };
 
   return (
@@ -49,28 +68,48 @@ export default function NovaWidget() {
           bottom-26 right-4
           sm:bottom-26 sm:right-10
 
-          ${isOpen ? 
-            "w-[95%] h-[75vh] sm:w-[360px] sm:h-[520px] opacity-100" :
-            "w-0 h-0 opacity-0"
+          ${
+            isOpen
+              ? "w-[95%] h-[75vh] sm:w-[360px] sm:h-[520px] opacity-100"
+              : "w-0 h-0 opacity-0"
           }
         `}
         style={{ transformOrigin: "bottom right" }}
       >
         <div className="p-4 bg-bg-dark border-b border-border flex justify-between items-center">
           <h2 className="text-xl font-semibold text-text-main">Nova</h2>
-          <Link href="/nova" className="text-primary hover:underline text-sm">
+          <Link href="/novabot" className="text-primary hover:underline text-sm">
             Open Full Chat
           </Link>
         </div>
 
-        <div className="flex-1 p-4 overflow-y-auto space-y-4">
+        <div
+          ref={containerRef}
+          className="flex-1 p-4 overflow-y-auto space-y-4
+                    scrollbar-thin scrollbar-track-bg-dark scrollbar-thumb-border
+                    hover:scrollbar-thumb-text-secondary"
+        >
           {messages.map((msg, i) => (
-            <div key={i} className="flex items-start gap-2 animate-fade-in">
-              <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold">
-                N
-              </div>
-              <div className="bg-bg p-3 rounded-lg border border-border max-w-[85%]">
-                <p className="text-text-secondary">{msg.text}</p>
+            <div
+              key={i}
+              className={`flex items-start gap-2 animate-fade-in ${
+                msg.sender === "user" ? "justify-end" : ""
+              }`}
+            >
+              {msg.sender === "nova" && (
+                <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-text-main font-bold">
+                  N
+                </div>
+              )}
+
+              <div
+                className={`p-3 rounded-lg border border-border max-w-[85%] ${
+                  msg.sender === "nova"
+                    ? "bg-bg text-text-secondary"
+                    : "bg-primary text-text-main"
+                }`}
+              >
+                <p>{msg.text}</p>
               </div>
             </div>
           ))}
@@ -80,24 +119,34 @@ export default function NovaWidget() {
           <input
             type="text"
             disabled={!isLoggedIn}
-            placeholder={isLoggedIn ? "Type a message..." : "Login required to chat"}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder={
+              isLoggedIn ? "Type a message..." : "Login required to chat"
+            }
             className={`
               flex-1 bg-bg-dark border border-border rounded-lg px-3 py-2 text-text-main outline-none
               ${!isLoggedIn ? "opacity-50 cursor-not-allowed" : ""}
             `}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && !e.shiftKey && isLoggedIn) {
+                e.preventDefault();
+                handleSend();
+              }
+            }}
           />
 
           {isLoggedIn ? (
             <button
               onClick={handleSend}
-              className="px-3 py-2 bg-primary text-white rounded-lg"
+              className="px-3 py-2 bg-primary text-text-main rounded-lg"
             >
               <SendHorizontal size={18} />
             </button>
           ) : (
             <Link
               href="/login"
-              className="px-3 py-2 bg-primary text-white rounded-lg text-sm"
+              className="px-3 py-2 bg-primary text-text-main rounded-lg text-sm"
             >
               Login
             </Link>
@@ -111,7 +160,7 @@ export default function NovaWidget() {
           fixed bottom-12 right-6 z-60
           w-13 h-13 shadow-lg rounded-full
           flex items-center justify-center
-          bg-primary text-white
+          bg-primary text-text-main
           duration-300
         `}
       >
