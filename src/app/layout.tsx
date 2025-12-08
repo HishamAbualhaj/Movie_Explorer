@@ -4,7 +4,7 @@ import "../styles/globals.css";
 import { Manrope } from "next/font/google";
 import Header from "@/components/layouts/Landing/Header/Header";
 import Footer from "@/components/layouts/Landing/Footer";
-import ChatWidget from "@/components/layouts/NovaBot/ChatWidget";
+import NovaWidget from "@/components/layouts/NovaBot/NovaWidget/NovaWidget";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -28,7 +28,7 @@ export default function RootLayout({
       <body className={`antialiased bg-bg`}>
         <Header />
         {children}
-        <ChatWidget />
+        <NovaWidget />
         <Footer />
       </body>
     </html>
