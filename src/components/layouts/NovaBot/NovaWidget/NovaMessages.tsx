@@ -10,9 +10,9 @@ type Props = {
 
 export default function NovaMessages({ isOpen, isLoggedIn }: Props) {
   const containerRef = useRef<HTMLDivElement | null>(null);
-
   const messages = useChatStore((s) => s.messages);
   const addMessage = useChatStore((s) => s.addMessage);
+  const isThinking = useChatStore((s) => s.isThinking);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -68,6 +68,17 @@ export default function NovaMessages({ isOpen, isLoggedIn }: Props) {
           </div>
         </div>
       ))}
+      {isThinking && (
+        <div className="flex items-start gap-2 animate-fade-in">
+          <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-text-main font-bold">
+            N
+          </div>
+
+          <div className="p-3 rounded-lg border border-border max-w-[85%] bg-bg text-text-secondary">
+            <p>Nova is thinking...</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
