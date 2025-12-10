@@ -5,6 +5,7 @@ import { Manrope } from "next/font/google";
 import Header from "@/components/layouts/Landing/Header/Header";
 import Footer from "@/components/layouts/Landing/Footer";
 import NovaWidget from "@/components/layouts/NovaBot/NovaWidget/NovaWidget";
+import { headers } from "next/headers";
 
 const manrope = Manrope({
   subsets: ["latin"],
