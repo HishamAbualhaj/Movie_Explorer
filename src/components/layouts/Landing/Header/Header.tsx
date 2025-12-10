@@ -11,8 +11,8 @@ export const navs = [
   },
   {
     title: "Movies & Shows",
-    link: "/",
-    active: true,
+    link: "/show/stranger",
+    active: false,
   },
   {
     title: "Support",
@@ -31,19 +31,13 @@ const Header = () => {
       <Logo />
       <div className="flex gap-5 bg-black/60 border-3 border-border rounded-lg p-2 lg:px-7 px-5 max-md:hidden">
         {navs.map((nav, i) => (
-          <Link
-            className={`text-text-secondary rounded-md lg:py-3 py-2 lg:px-4 px-2 hover:bg-bg-light  hover:text-white transition ${
-              nav.active ? "bg-bg-light  text-white" : ""
-            }`}
-            key={i}
-            href={nav.link}
-          >
+          <Link className={`text-text-secondary rounded-md lg:py-3 py-2 lg:px-4 px-2 hover:bg-bg-light  hover:text-white transition ${nav.active ? "bg-bg-light  text-white" : ""}`} key={i} href={nav.link}>
             {nav.title}
           </Link>
         ))}
       </div>
       <HeaderBar />
-      <HeaderIcons isMobile={false}/>
+      <HeaderIcons isMobile={false} />
     </header>
   );
 };
