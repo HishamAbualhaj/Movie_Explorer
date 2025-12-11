@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
 @theme {
-  
   --font-sans: var(--font-manrope);
   --color-primary: #d1001f;
   --color-primary-light: #ff2e40;
@@ -21,5 +20,11 @@
 @layer base {
   html {
     font-family: var(--font-manrope), sans-serif;
+  }
+}
+
+@layer components {
+  .container-wrapper {
+    @apply max-w-[1600px] mx-auto px-5;
   }
 }
