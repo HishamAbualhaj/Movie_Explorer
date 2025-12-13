@@ -11,7 +11,7 @@ export const navs = [
   },
   {
     title: "Movies & Shows",
-    link: "/show/stranger",
+    link: "/movies&shows",
     active: false,
   },
   {
