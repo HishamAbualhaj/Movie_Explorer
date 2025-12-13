@@ -29,7 +29,7 @@ export default function HeroSection() {
   const movie = heroMovies[index];
 
   return (
-    <section className="px-4 sm:px-6 lg:px-8 my-6">
+    <section className="px-1 sm:px-2 lg:px-3 my-6">
       <div className="relative">
         <HeroCard
           movie={movie}

@@ -12,6 +12,7 @@ import HeroSection from "@/components/layouts/Movies&Shows/Hero/HeroSection";
 import SectionRow from "@/components/layouts/Movies&Shows/SectionRow";
 import Top10List from "@/components/layouts/Movies&Shows/Top10List";
 import Categories from "@/components/layouts/Landing/Categories/Categories";
+import SectionRapper from "@/components/layouts/Movies&Shows/SectionWrapper";
 
 export default function MoviesAndShowsPage() {
   // use movie.id (string) as the key for state
@@ -40,12 +41,11 @@ export default function MoviesAndShowsPage() {
   const top10Action = useMemo(() => sampleTop10, []);
 
   return (
+    <main className="max-w-7xl mx-auto pt-6 pb-12">
+      <HeroSection />
 
-      <main className="max-w-7xl mx-auto pt-6 pb-12">
-        <HeroSection />
-        {/* <Genres /> */}
-
-        <Categories title="Categories" subtitle="Explore Categories" py="py-10" />
+      <Categories title="Categories" subtitle="Explore Categories" py="py-10" />
+      <SectionRapper type="Movies">
         <SectionRow
           title="Trending Now"
           items={trending}
@@ -83,7 +83,46 @@ export default function MoviesAndShowsPage() {
           onToggle={toggle}
           seeAllHref="/shows"
         />
-      </main>
+      </SectionRapper>
+      <SectionRapper type="Movies">
+        <SectionRow
+          title="Trending Now"
+          items={trending}
+          itemSize="small"
+          getStateFor={getStateFor}
+          onToggle={toggle}
+          seeAllHref="/trending"
+        />
 
+        <SectionRow
+          title="New Releases"
+          items={newReleases}
+          itemSize="small"
+          getStateFor={getStateFor}
+          onToggle={toggle}
+          seeAllHref="/new-releases"
+        />
+
+        <Top10List title="Top 10 — Action" items={top10Action} />
+
+        <SectionRow
+          title="Must-Watch Movies"
+          items={mustWatch}
+          itemSize="medium"
+          getStateFor={getStateFor}
+          onToggle={toggle}
+          seeAllHref="/must-watch"
+        />
+
+        <SectionRow
+          title="Trending Shows"
+          items={shows}
+          itemSize="small"
+          getStateFor={getStateFor}
+          onToggle={toggle}
+          seeAllHref="/shows"
+        />
+      </SectionRapper>
+    </main>
   );
 }
