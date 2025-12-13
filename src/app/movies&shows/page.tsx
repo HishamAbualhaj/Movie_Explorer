@@ -11,6 +11,7 @@ import { top10Action as sampleTop10 } from "@/data/top10";
 import HeroSection from "@/components/layouts/Movies&Shows/Hero/HeroSection";
 import SectionRow from "@/components/layouts/Movies&Shows/SectionRow";
 import Top10List from "@/components/layouts/Movies&Shows/Top10List";
+import Categories from "@/components/layouts/Landing/Categories/Categories";
 
 export default function MoviesAndShowsPage() {
   // use movie.id (string) as the key for state
@@ -40,10 +41,11 @@ export default function MoviesAndShowsPage() {
 
   return (
 
-      <main>
+      <main className="max-w-7xl mx-auto pt-6 pb-12">
         <HeroSection />
         {/* <Genres /> */}
 
+        <Categories title="Categories" subtitle="Explore Categories" py="py-10" />
         <SectionRow
           title="Trending Now"
           items={trending}

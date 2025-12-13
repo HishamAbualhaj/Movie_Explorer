@@ -5,6 +5,7 @@ export interface Movie {
   poster?: string;
   rating: number;
   overview: string;
+  duration?: string;
   genre?: string[];
 }
 
