@@ -27,7 +27,7 @@ export default function HeartButton({
       ) : (
         <Heart
           size={size}
-          className="text-gray-400 transition-all duration-200"
+          className="text-white transition-all duration-200"
         />
       )}
     </button>
