@@ -1,11 +1,15 @@
+import Logo from "@/components/ui/Logo";
 import MovieBackground from "@/components/ui/MovieBackground";
 import { Check, Film } from "lucide-react";
-
-
+import { socials } from "../login/page";
+import SignupForm from "@/components/layouts/Signup/SignupForm";
+import Button from "@/components/ui/Button";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
 const page = () => {
   return (
-    <div className="h-full">
-      <div className="h-full hidden lg:flex lg:w-1/2 relative">
+    <div className="lg:flex gap-10">
+      <div className="hidden lg:flex lg:w-1/2 relative">
         <MovieBackground />
         <div className="relative z-10 flex flex-col justify-center items-center w-full p-12">
           <div className="max-w-md text-center">
@@ -33,6 +37,60 @@ const page = () => {
                 <span className="text-text-secondary">{feature}</span>
               </div>
             ))}
+          </div>
+        </div>
+      </div>
+      <div className="lg:hidden flex justify-center py-8 px-5">
+        <Logo />
+      </div>
+      <div className="text-white flex flex-1 justify-center lg:py-32 px-5">
+        <div className="max-w-[500px] rounded-xl  flex-1 bg-bg-light px-10 py-8">
+          <div className="text-white font-bold text-center text-3xl">
+            Create Account
+          </div>
+          <div className="text-text-secondary mt-2 text-center">
+            Start your cinematic journey today
+          </div>
+
+          <div className="flex flex-col gap-3 py-8">
+            {socials.map((soc, i) => (
+              <button
+                key={i}
+                type="button"
+                className={cn(
+                  "flex items-center justify-center gap-3 w-full py-3 rounded-lg cursor-pointer",
+                  "bg-border/20 border border-border",
+                  "text-foreground font-medium",
+                  "transition-all duration-200",
+                  "hover:bg-secondary hover:bg-bg-light"
+                )}
+              >
+                {soc.icon}
+                <span>{soc.label}</span>
+              </button>
+            ))}
+          </div>
+
+          <div className="relative flex justify-between items-center">
+            <div className="h-px w-full bg-border"></div>
+            <div className="text-[15px] flex-1">
+              <span className="px-2 text-text-muted text-nowrap">
+                or sign up with email
+              </span>
+            </div>
+            <div className="h-px w-full bg-border"></div>
+          </div>
+
+          <SignupForm />
+          <div className="flex justify-center mt-3">
+            <Button className="py-2!">Create Account</Button>
+          </div>
+
+          <div className="mt-5 flex justify-center gap-2">
+            Already have an account?{" "}
+            <Link className="text-primary underline" href="/login">
+              Login
+            </Link>
           </div>
         </div>
       </div>
