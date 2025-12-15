@@ -81,7 +81,7 @@ export default function MovieCard({
             id={`media-${media.id}-title`}
             className="text-sm font-semibold text-text-main line-clamp-2"
           >
-            {media.title}{" "}
+            {media.title}
             {/* <span className="text-text-muted text-xs">({media.year})</span> */}
           </h3>
           <div className="flex items-center gap-2">

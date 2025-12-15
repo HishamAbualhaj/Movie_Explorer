@@ -13,6 +13,7 @@ import SectionRow from "@/components/layouts/Movies&Shows/SectionRow";
 import Top10List from "@/components/layouts/Movies&Shows/Top10List";
 import Categories from "@/components/layouts/Landing/Categories/Categories";
 import SectionRapper from "@/components/layouts/Movies&Shows/SectionWrapper";
+import Trial from "@/components/ui/Trial";
 
 export default function MoviesAndShowsPage() {
   // use movie.id (string) as the key for state
@@ -89,6 +90,8 @@ export default function MoviesAndShowsPage() {
           getStateFor={getStateFor}
           onToggle={toggle}
           seeAllHref="/trending"
+          showRating={true}
+          showSeasons={true}
         />
 
         <SectionRow
@@ -98,6 +101,7 @@ export default function MoviesAndShowsPage() {
           getStateFor={getStateFor}
           onToggle={toggle}
           seeAllHref="/new-releases"
+          showYear={true}
         />
 
         <SectionRow
@@ -107,8 +111,11 @@ export default function MoviesAndShowsPage() {
           getStateFor={getStateFor}
           onToggle={toggle}
           seeAllHref="/must-watch"
+          showSeasons={true}
+          showRating={true}
         />
       </SectionRapper>
+      <Trial />
     </main>
   );
 }
