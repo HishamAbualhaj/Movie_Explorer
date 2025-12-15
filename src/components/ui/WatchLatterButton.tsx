@@ -21,7 +21,7 @@ export default function WatchLaterButton({
     >
       {active ? (
         <BookmarkCheck
-          size={size+4}
+          size={size}
           className="text-black fill-blue-400 transition-all duration-200"
         />
       ) : (

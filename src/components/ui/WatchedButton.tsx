@@ -21,7 +21,7 @@ export default function WatchedButton({
     >
       {active ? (
         <CheckCircle
-          size={size+4}
+          size={size}
           className="text-black fill-green-400 transition-all duration-200"
         />
       ) : (
