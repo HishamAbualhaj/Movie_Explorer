@@ -1,4 +1,3 @@
-// data/movies.ts
 import { Movie } from "@/types/movie";
 
 export const movies: Movie[] = [
@@ -11,6 +10,8 @@ export const movies: Movie[] = [
     overview:
       "After the devastating events of Infinity War, the Avengers assemble once more to reverse Thanos’ actions.",
     genre: ["Action", "Adventure", "Sci-Fi"],
+    releaseDate: "2019-04-26",
+    duration: 181,
   },
   {
     id: "m2",
@@ -21,6 +22,8 @@ export const movies: Movie[] = [
     overview:
       "A skilled thief is given a chance at redemption if he can successfully perform inception.",
     genre: ["Action", "Sci-Fi", "Thriller"],
+    releaseDate: "2010-07-16",
+    duration: 148,
   },
   {
     id: "m3",
@@ -31,6 +34,8 @@ export const movies: Movie[] = [
     overview:
       "A group of explorers travel through a wormhole in space in an attempt to ensure humanity’s survival.",
     genre: ["Adventure", "Drama", "Sci-Fi"],
+    releaseDate: "2014-11-07",
+    duration: 169,
   },
   {
     id: "m4",
@@ -41,6 +46,8 @@ export const movies: Movie[] = [
     overview:
       "Batman faces the Joker, a criminal mastermind who plunges Gotham City into chaos.",
     genre: ["Action", "Crime", "Drama"],
+    releaseDate: "2008-07-18",
+    duration: 152,
   },
   {
     id: "m5",
@@ -51,6 +58,8 @@ export const movies: Movie[] = [
     overview:
       "A gritty character study of Arthur Fleck, a man disregarded by society.",
     genre: ["Crime", "Drama", "Thriller"],
+    releaseDate: "2019-10-04",
+    duration: 122,
   },
   {
     id: "m6",
@@ -61,6 +70,8 @@ export const movies: Movie[] = [
     overview:
       "Paul Atreides leads nomadic tribes in a battle to control the desert planet Arrakis.",
     genre: ["Adventure", "Drama", "Sci-Fi"],
+    releaseDate: "2021-10-22",
+    duration: 155,
   },
   {
     id: "m7",
@@ -71,6 +82,8 @@ export const movies: Movie[] = [
     overview:
       "A hacker discovers the true nature of reality and his role in the war against its controllers.",
     genre: ["Action", "Sci-Fi"],
+    releaseDate: "1999-03-31",
+    duration: 136,
   },
   {
     id: "m8",
@@ -81,5 +94,7 @@ export const movies: Movie[] = [
     overview:
       "A betrayed Roman general seeks revenge against the corrupt emperor.",
     genre: ["Action", "Drama"],
+    releaseDate: "2000-05-05",
+    duration: 155,
   },
 ];

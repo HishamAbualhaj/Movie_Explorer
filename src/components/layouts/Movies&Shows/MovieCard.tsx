@@ -1,11 +1,11 @@
 import Image from "next/image";
 import HeartButton from "@/components/ui/HeartButton";
 import WatchedButton from "@/components/ui/WatchedButton";
-import { Movie } from "@/types/movie";
+import { Movie, Show } from "@/types/movie";
 import WatchLaterButton from "@/components/ui/WatchLatterButton";
 
 type Props = {
-  movie: Movie;
+  movie: Movie | Show;
   isFavorite?: boolean;
   isWatchLater?: boolean;
   isWatched?: boolean;
@@ -13,10 +13,14 @@ type Props = {
   onToggleWatchLater?: () => void;
   onToggleWatched?: () => void;
   size?: "small" | "medium";
+  showRating?: boolean;
+  showYear?: boolean;
+  showDuration?: boolean;
+  showSeasons?: boolean;
 };
 
 export default function MovieCard({
-  movie,
+  movie: media,
   isFavorite = false,
   isWatchLater = false,
   isWatched = false,
@@ -24,35 +28,41 @@ export default function MovieCard({
   onToggleWatchLater,
   onToggleWatched,
   size = "medium",
+  showRating = false,
+  showYear = false,
+  showDuration = false,
+  showSeasons = false,
 }: Props) {
+  const isShow = "seasons" in media;
+
   return (
     <article
-      aria-labelledby={`movie-${movie.id}-title`}
-      className={`flex flex-col rounded-lg overflow-hidden bg-zinc-900 shadow-lg h-100 ${
+      aria-labelledby={`media-${media.id}-title`}
+      className={`flex flex-col rounded-lg overflow-hidden bg-bg-light shadow-lg ${
         size === "small" ? "w-60" : "w-80"
       }`}
     >
-      <div className="relative h-56 md:h-64 w-full">
+      <div className="relative h-56 md:h-64 m-3 rounded-md overflow-hidden">
         <div
           className="absolute inset-0 flex flex-col items-center justify-center text-center px-4
                   bg-linear-to-br from-zinc-700/80 via-zinc-900/90 to-black backdrop-blur-3xl"
         >
           <div className="absolute inset-0 bg-black/20" />
           <h3 className="text-base font-semibold text-text-main leading-snug">
-            {movie.title}
+            {media.title}
           </h3>
 
           <div className="mt-2 text-xs text-text-secondary">
-            <span>{movie.year}</span>
+            <span>{media.year}</span>
             <span className="mx-1">•</span>
-            <span>⭐ {movie.rating}</span>
+            <span>⭐ {media.rating}</span>
           </div>
         </div>
 
-        {movie.poster && (
+        {media.poster && (
           <Image
-            src={movie.poster}
-            alt={movie.title}
+            src={media.poster}
+            alt={media.title}
             fill
             className="object-cover"
             onError={(e) => {
@@ -61,31 +71,19 @@ export default function MovieCard({
           />
         )}
         <div className="absolute top-2 right-2 flex gap-2">
-        <HeartButton filled={isFavorite} onClick={onToggleFavorite} />
-      </div>
+          <HeartButton filled={isFavorite} onClick={onToggleFavorite} />
+        </div>
       </div>
 
-      <div className="p-3 flex-1 flex flex-col justify-between">
-        <div>
+      <div className="flex-1 flex flex-col justify-between mx-3 px-2 my-1">
+        <div className="flex-1  flex flex-row justify-between">
           <h3
-            id={`movie-${movie.id}-title`}
+            id={`media-${media.id}-title`}
             className="text-sm font-semibold text-text-main line-clamp-2"
           >
-            {movie.title}{" "}
-            <span className="text-text-muted text-xs">({movie.year})</span>
+            {media.title}{" "}
+            {/* <span className="text-text-muted text-xs">({media.year})</span> */}
           </h3>
-
-          <div className="text-xs text-text-secondary mt-1">
-            <span>{movie.rating ? `⭐ ${movie.rating}` : ""}</span>
-            {movie.genre ? ` • ${movie.genre.join(", ")}` : ""}
-          </div>
-
-          <p className="text-xs text-text-muted mt-2 line-clamp-3">
-            {movie.overview}
-          </p>
-        </div>
-
-        <div className="mt-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <WatchLaterButton
               active={isWatchLater}
@@ -93,13 +91,33 @@ export default function MovieCard({
             />
             <WatchedButton active={isWatched} onClick={onToggleWatched} />
           </div>
+        </div>
+      </div>
+      <div className="mx-3 mt-1 mb-3 px-2">
+        <div className="flex flex-wrap gap-2">
+          {showRating && media.rating && (
+            <span className="inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium bg-bg text-text-main">
+              ⭐ {media.rating}
+            </span>
+          )}
 
-          <button
-            className="text-xs text-text-main bg-bg px-3 py-1 rounded-md"
-            aria-label={`Details for ${movie.title}`}
-          >
-            Details
-          </button>
+          {showYear && media.releaseDate && (
+            <span className="inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium bg-bg text-text-main">
+              Released: {media.releaseDate}
+            </span>
+          )}
+
+          {showDuration && !isShow && media.duration && (
+            <span className="inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium bg-bg text-text-main">
+              {media.duration} min
+            </span>
+          )}
+
+          {showSeasons && isShow && (
+            <span className="inline-flex items-center rounded-full px-2.5 py-1 text-xs font-medium bg-bg text-text-main">
+              {media.seasons} {media.seasons === 1 ? "season" : "seasons"}
+            </span>
+          )}
         </div>
       </div>
     </article>

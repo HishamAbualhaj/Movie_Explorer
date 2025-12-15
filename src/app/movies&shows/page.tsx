@@ -37,7 +37,9 @@ export default function MoviesAndShowsPage() {
   const trending = useMemo(() => movies.slice(0, 8), []);
   const newReleases = useMemo(() => movies.slice(4, 12), []);
   const mustWatch = useMemo(() => movies.slice(2, 10), []);
-  const shows = useMemo(() => showsData, []);
+  const trendingShows = useMemo(() => showsData.slice(0, 8), []);
+  const newReleasesShows = useMemo(() => showsData.slice(4, 12), []);
+  const mustWatchShows = useMemo(() => showsData.slice(2, 10), []);
   const top10Action = useMemo(() => sampleTop10, []);
 
   return (
@@ -53,6 +55,7 @@ export default function MoviesAndShowsPage() {
           getStateFor={getStateFor}
           onToggle={toggle}
           seeAllHref="/trending"
+          showDuration={true}
         />
 
         <SectionRow
@@ -62,6 +65,7 @@ export default function MoviesAndShowsPage() {
           getStateFor={getStateFor}
           onToggle={toggle}
           seeAllHref="/new-releases"
+          showYear={true}
         />
 
         <Top10List title="Top 10 — Action" items={top10Action} />
@@ -73,21 +77,14 @@ export default function MoviesAndShowsPage() {
           getStateFor={getStateFor}
           onToggle={toggle}
           seeAllHref="/must-watch"
-        />
-
-        <SectionRow
-          title="Trending Shows"
-          items={shows}
-          itemSize="small"
-          getStateFor={getStateFor}
-          onToggle={toggle}
-          seeAllHref="/shows"
+          showDuration={true}
+          showRating={true}
         />
       </SectionRapper>
-      <SectionRapper type="Movies">
+      <SectionRapper type="Shows">
         <SectionRow
           title="Trending Now"
-          items={trending}
+          items={trendingShows}
           itemSize="small"
           getStateFor={getStateFor}
           onToggle={toggle}
@@ -96,31 +93,20 @@ export default function MoviesAndShowsPage() {
 
         <SectionRow
           title="New Releases"
-          items={newReleases}
+          items={newReleasesShows}
           itemSize="small"
           getStateFor={getStateFor}
           onToggle={toggle}
           seeAllHref="/new-releases"
         />
 
-        <Top10List title="Top 10 — Action" items={top10Action} />
-
         <SectionRow
           title="Must-Watch Movies"
-          items={mustWatch}
+          items={mustWatchShows}
           itemSize="medium"
           getStateFor={getStateFor}
           onToggle={toggle}
           seeAllHref="/must-watch"
-        />
-
-        <SectionRow
-          title="Trending Shows"
-          items={shows}
-          itemSize="small"
-          getStateFor={getStateFor}
-          onToggle={toggle}
-          seeAllHref="/shows"
         />
       </SectionRapper>
     </main>

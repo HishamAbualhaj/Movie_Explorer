@@ -1,4 +1,3 @@
-// data/top10.ts
 import { Movie } from "@/types/movie";
 import { movies } from "./movies";
 
