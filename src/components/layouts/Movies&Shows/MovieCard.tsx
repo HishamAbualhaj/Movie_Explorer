@@ -3,15 +3,12 @@ import HeartButton from "@/components/ui/HeartButton";
 import WatchedButton from "@/components/ui/WatchedButton";
 import { Movie, Show } from "@/types/movie";
 import WatchLaterButton from "@/components/ui/WatchLatterButton";
+import { useFavouritesStore } from "@/stores/favouritesStore";
+import { useWatchedStore } from "@/stores/watchedStore";
+import { useWatchLaterStore } from "@/stores/watchLaterStore";
 
 type Props = {
   movie: Movie | Show;
-  isFavorite?: boolean;
-  isWatchLater?: boolean;
-  isWatched?: boolean;
-  onToggleFavorite?: () => void;
-  onToggleWatchLater?: () => void;
-  onToggleWatched?: () => void;
   size?: "small" | "medium";
   showRating?: boolean;
   showYear?: boolean;
@@ -21,12 +18,6 @@ type Props = {
 
 export default function MovieCard({
   movie: media,
-  isFavorite = false,
-  isWatchLater = false,
-  isWatched = false,
-  onToggleFavorite,
-  onToggleWatchLater,
-  onToggleWatched,
   size = "medium",
   showRating = false,
   showYear = false,
@@ -34,6 +25,18 @@ export default function MovieCard({
   showSeasons = false,
 }: Props) {
   const isShow = "seasons" in media;
+
+  const isFavorite = useFavouritesStore((state) => state.isFavourite(media.id));
+  const addFavourite = useFavouritesStore((state) => state.addFavourite);
+  const removeFavourite = useFavouritesStore((state) => state.removeFavourite);
+
+  const isWatched = useWatchedStore((state) => state.isWatched(media.id));
+  const addWatched = useWatchedStore((state) => state.addWatched);
+  const removeWatched = useWatchedStore((state) => state.removeWatched);
+
+  const isWatchLater = useWatchLaterStore((state) => state.isWatchLater(media.id));
+  const addWatchLater = useWatchLaterStore((state) => state.addWatchLater);
+  const removeWatchLater = useWatchLaterStore((state) => state.removeWatchLater);
 
   return (
     <article
@@ -71,7 +74,12 @@ export default function MovieCard({
           />
         )}
         <div className="absolute top-2 right-2 flex gap-2">
-          <HeartButton filled={isFavorite} onClick={onToggleFavorite} />
+          <HeartButton
+            filled={isFavorite}
+            onClick={() =>
+              isFavorite ? removeFavourite(media.id) : addFavourite(media)
+            }
+          />
         </div>
       </div>
 
@@ -87,9 +95,11 @@ export default function MovieCard({
           <div className="flex items-center gap-2">
             <WatchLaterButton
               active={isWatchLater}
-              onClick={onToggleWatchLater}
+              onClick={() =>
+              isWatchLater ? removeWatchLater(media.id) : addWatchLater(media)
+            }
             />
-            <WatchedButton active={isWatched} onClick={onToggleWatched} />
+            <WatchedButton active={isWatched} onClick={() => isWatched ? removeWatched(media.id) : addWatched(media)} />
           </div>
         </div>
       </div>

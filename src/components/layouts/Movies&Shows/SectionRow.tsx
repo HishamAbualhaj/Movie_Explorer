@@ -4,15 +4,6 @@ import { Movie, Show } from "@/types/movie";
 type RowProps = {
   title: string;
   items: Array<Movie | Show>;
-  getStateFor?: (media: Movie | Show) => {
-    isFavorite: boolean;
-    isWatchLater: boolean;
-    isWatched: boolean;
-  };
-  onToggle?: (
-    media: Movie | Show,
-    action: "fav" | "later" | "watched"
-  ) => void;
   itemSize?: "small" | "medium";
   seeAllHref?: string;
   showRating?: boolean;
@@ -24,8 +15,6 @@ type RowProps = {
 export default function SectionRow({
   title,
   items,
-  getStateFor,
-  onToggle,
   itemSize = "small",
   seeAllHref,
   showRating = false,
@@ -51,25 +40,12 @@ export default function SectionRow({
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex gap-4 overflow-x-auto pb-2">
           {items.map((media) => {
-            const state = getStateFor
-              ? getStateFor(media)
-              : {
-                  isFavorite: false,
-                  isWatchLater: false,
-                  isWatched: false,
-                };
 
             return (
               <div key={media.id} className="shrink-0">
                 <MovieCard
                   movie={media}
                   size={itemSize}
-                  isFavorite={state.isFavorite}
-                  isWatchLater={state.isWatchLater}
-                  isWatched={state.isWatched}
-                  onToggleFavorite={() => onToggle?.(media, "fav")}
-                  onToggleWatchLater={() => onToggle?.(media, "later")}
-                  onToggleWatched={() => onToggle?.(media, "watched")}
                   showRating={showRating}
                   showYear={showYear}
                   showDuration={showDuration}

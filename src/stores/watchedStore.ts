@@ -1,10 +1,12 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { Movie } from "../types/movie";
+import { Movie, Show } from "@/types/movie";
+
+type Media = Movie | Show;
 
 type WatchedState = {
-  watched: Movie[];
-  addWatched: (movie: Movie) => void;
+  watched: Media[];
+  addWatched: (media: Media) => void;
   removeWatched: (id: string) => void;
   isWatched: (id: string) => boolean;
 };
@@ -14,10 +16,10 @@ export const useWatchedStore = create<WatchedState>()(
     (set, get) => ({
       watched: [],
 
-      addWatched: (movie) =>
+      addWatched: (media) =>
         set((state) => {
-          if (state.watched.find((m) => m.id === movie.id)) return state;
-          return { watched: [...state.watched, movie] };
+          if (state.watched.some((m) => m.id === media.id)) return state;
+          return { watched: [...state.watched, media] };
         }),
 
       removeWatched: (id) =>
@@ -28,6 +30,8 @@ export const useWatchedStore = create<WatchedState>()(
       isWatched: (id) =>
         get().watched.some((m) => m.id === id),
     }),
-    { name: "watched-storage" }
+    {
+      name: "watched-storage",
+    }
   )
 );

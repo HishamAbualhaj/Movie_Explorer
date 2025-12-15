@@ -16,23 +16,7 @@ import SectionRapper from "@/components/layouts/Movies&Shows/SectionWrapper";
 import Trial from "@/components/ui/Trial";
 
 export default function MoviesAndShowsPage() {
-  // use movie.id (string) as the key for state
-  const [favorites, setFavorites] = useState<Record<string, boolean>>({});
-  const [watchLater, setWatchLater] = useState<Record<string, boolean>>({});
-  const [watched, setWatched] = useState<Record<string, boolean>>({});
 
-  const toggle = (m: Movie, action: "fav" | "later" | "watched") => {
-    const key = m.id;
-    if (action === "fav") setFavorites((s) => ({ ...s, [key]: !s[key] }));
-    if (action === "later") setWatchLater((s) => ({ ...s, [key]: !s[key] }));
-    if (action === "watched") setWatched((s) => ({ ...s, [key]: !s[key] }));
-  };
-
-  const getStateFor = (m: Movie) => ({
-    isFavorite: !!favorites[m.id],
-    isWatchLater: !!watchLater[m.id],
-    isWatched: !!watched[m.id],
-  });
 
   // Example section data - replace with your real data
   const trending = useMemo(() => movies.slice(0, 8), []);
@@ -53,8 +37,6 @@ export default function MoviesAndShowsPage() {
           title="Trending Now"
           items={trending}
           itemSize="small"
-          getStateFor={getStateFor}
-          onToggle={toggle}
           seeAllHref="/trending"
           showDuration={true}
         />
@@ -63,8 +45,6 @@ export default function MoviesAndShowsPage() {
           title="New Releases"
           items={newReleases}
           itemSize="small"
-          getStateFor={getStateFor}
-          onToggle={toggle}
           seeAllHref="/new-releases"
           showYear={true}
         />
@@ -75,8 +55,6 @@ export default function MoviesAndShowsPage() {
           title="Must-Watch Movies"
           items={mustWatch}
           itemSize="medium"
-          getStateFor={getStateFor}
-          onToggle={toggle}
           seeAllHref="/must-watch"
           showDuration={true}
           showRating={true}
@@ -87,8 +65,6 @@ export default function MoviesAndShowsPage() {
           title="Trending Now"
           items={trendingShows}
           itemSize="small"
-          getStateFor={getStateFor}
-          onToggle={toggle}
           seeAllHref="/trending"
           showRating={true}
           showSeasons={true}
@@ -98,8 +74,6 @@ export default function MoviesAndShowsPage() {
           title="New Releases"
           items={newReleasesShows}
           itemSize="small"
-          getStateFor={getStateFor}
-          onToggle={toggle}
           seeAllHref="/new-releases"
           showYear={true}
         />
@@ -108,8 +82,6 @@ export default function MoviesAndShowsPage() {
           title="Must-Watch Movies"
           items={mustWatchShows}
           itemSize="medium"
-          getStateFor={getStateFor}
-          onToggle={toggle}
           seeAllHref="/must-watch"
           showSeasons={true}
           showRating={true}
