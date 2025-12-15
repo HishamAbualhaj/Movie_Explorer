@@ -44,7 +44,7 @@ export default function MoviesAndShowsPage() {
   const top10Action = useMemo(() => sampleTop10, []);
 
   return (
-    <main className="max-w-7xl mx-auto pt-6 pb-12">
+    <main className="min-h-screen bg-bg pt-4">
       <HeroSection />
 
       <Categories title="Categories" subtitle="Explore Categories" py="py-10" />

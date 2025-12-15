@@ -29,35 +29,37 @@ export default function HeroSection() {
   const movie = heroMovies[index];
 
   return (
-    <section className="px-1 sm:px-2 lg:px-3 my-6">
-      <div className="relative">
-        <HeroCard
-          movie={movie}
-          index={index}
-          isFavorite={!!favorites[index]}
-          isWatchLater={!!watchLater[index]}
-          isWatched={!!watched[index]}
-          onToggleFavorite={() => toggleFavorite(index)}
-          onToggleWatchLater={() => toggleWatchLater(index)}
-          onToggleWatched={() => toggleWatched(index)}
-        />
+    <div className="container-wrapper">
+      <section className="px-1 sm:px-2 lg:px-3 my-6">
+        <div className="relative">
+          <HeroCard
+            movie={movie}
+            index={index}
+            isFavorite={!!favorites[index]}
+            isWatchLater={!!watchLater[index]}
+            isWatched={!!watched[index]}
+            onToggleFavorite={() => toggleFavorite(index)}
+            onToggleWatchLater={() => toggleWatchLater(index)}
+            onToggleWatched={() => toggleWatched(index)}
+          />
 
-        <button
-          onClick={prevMovie}
-          aria-label="Previous movie"
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-bg hover:bg-bg-dark text-text-main"
-        >
-          <ChevronLeft size={28} />
-        </button>
+          <button
+            onClick={prevMovie}
+            aria-label="Previous movie"
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-bg hover:bg-bg-dark text-text-main"
+          >
+            <ChevronLeft size={28} />
+          </button>
 
-        <button
-          onClick={nextMovie}
-          aria-label="Next movie"
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-bg hover:bg-bg-dark text-text-main"
-        >
-          <ChevronRight size={28} />
-        </button>
-      </div>
-    </section>
+          <button
+            onClick={nextMovie}
+            aria-label="Next movie"
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-bg hover:bg-bg-dark text-text-main"
+          >
+            <ChevronRight size={28} />
+          </button>
+        </div>
+      </section>
+    </div>
   );
 }
