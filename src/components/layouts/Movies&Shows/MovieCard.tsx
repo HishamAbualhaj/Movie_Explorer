@@ -34,9 +34,13 @@ export default function MovieCard({
   const addWatched = useWatchedStore((state) => state.addWatched);
   const removeWatched = useWatchedStore((state) => state.removeWatched);
 
-  const isWatchLater = useWatchLaterStore((state) => state.isWatchLater(media.id));
+  const isWatchLater = useWatchLaterStore((state) =>
+    state.isWatchLater(media.id)
+  );
   const addWatchLater = useWatchLaterStore((state) => state.addWatchLater);
-  const removeWatchLater = useWatchLaterStore((state) => state.removeWatchLater);
+  const removeWatchLater = useWatchLaterStore(
+    (state) => state.removeWatchLater
+  );
 
   return (
     <article
@@ -45,7 +49,11 @@ export default function MovieCard({
         size === "small" ? "w-60" : "w-80"
       }`}
     >
-      <div className="relative h-56 md:h-64 m-3 rounded-md overflow-hidden">
+      <div
+        className={`relative m-3 rounded-md overflow-hidden ${
+          size === "small" ? "h-56 md:h-64" : "h-72 md:h-90"
+        }`}
+      >
         <div
           className="absolute inset-0 flex flex-col items-center justify-center text-center px-4
                   bg-linear-to-br from-zinc-700/80 via-zinc-900/90 to-black backdrop-blur-3xl"
@@ -96,10 +104,15 @@ export default function MovieCard({
             <WatchLaterButton
               active={isWatchLater}
               onClick={() =>
-              isWatchLater ? removeWatchLater(media.id) : addWatchLater(media)
-            }
+                isWatchLater ? removeWatchLater(media.id) : addWatchLater(media)
+              }
             />
-            <WatchedButton active={isWatched} onClick={() => isWatched ? removeWatched(media.id) : addWatched(media)} />
+            <WatchedButton
+              active={isWatched}
+              onClick={() =>
+                isWatched ? removeWatched(media.id) : addWatched(media)
+              }
+            />
           </div>
         </div>
       </div>

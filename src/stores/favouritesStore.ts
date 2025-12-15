@@ -21,9 +21,9 @@ export const useFavouritesStore = create<FavouritesState>()(
       favourites: [],
 
       loadInitialData: () => {
-        set(() => ({
-          favourites: favouriteMovies,
-        }));
+        // set(() => ({
+        //   favourites: favouriteMovies,
+        // }));
       },
 
       addFavourite: (media) =>
