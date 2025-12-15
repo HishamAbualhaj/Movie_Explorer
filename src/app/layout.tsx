@@ -2,9 +2,7 @@ import type { Metadata } from "next";
 import "../styles/globals.css";
 
 import { Manrope } from "next/font/google";
-import Header from "@/components/layouts/Landing/Header/Header";
-import Footer from "@/components/layouts/Landing/Footer";
-import ClientWidgetWrapper from "@/components/layouts/NovaBot/NovaWidget/ClientWidgetWrapper";
+
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -25,12 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${manrope.variable}`}>
-      <body className={`antialiased bg-bg`}>
-        <Header />
-        {children}
-        <ClientWidgetWrapper />
-        <Footer />
-      </body>
+      <body className={`antialiased bg-bg`}>{children}</body>
     </html>
   );
 }

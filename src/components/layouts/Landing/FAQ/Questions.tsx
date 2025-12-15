@@ -7,12 +7,10 @@ const Questions = ({
   id,
   question,
   answer,
-  isBorder = true,
 }: {
   id: number;
   question: string;
   answer: string;
-  isBorder?: boolean;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -47,9 +45,8 @@ const Questions = ({
               {answer}
             </div>
           </div>
-          {isBorder && (
-            <div className="opacity-50 w-full h-px bg-[linear-gradient(90deg,transparent_0%,#E50000_20%,#E50000_40%,transparent_100%)]"></div>
-          )}
+
+          <div className="opacity-50 w-full h-px bg-[linear-gradient(90deg,transparent_0%,#E50000_20%,#E50000_40%,transparent_100%)]"></div>
         </div>
       </div>
     </div>

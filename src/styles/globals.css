@@ -21,6 +21,17 @@
   html {
     font-family: var(--font-manrope), sans-serif;
   }
+  input[type="checkbox"] {
+    @apply h-4 w-4 rounded-full! border border-bg-light appearance-none cursor-pointer transition;
+  }
+
+  input[type="checkbox"]:checked {
+    @apply bg-primary border-primary;
+  }
+
+  input[type="checkbox"]:focus {
+    @apply ring-2 ring-primary/40;
+  }
 }
 
 @layer components {
@@ -29,10 +40,15 @@
   }
 }
 
-
 @keyframes fade-in {
-  from { opacity: 0; transform: translateY(4px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .animate-fade-in {
@@ -56,4 +72,3 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
-
