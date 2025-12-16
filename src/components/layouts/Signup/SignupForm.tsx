@@ -60,7 +60,7 @@ const SignupForm = () => {
         />
       ),
     },
-     {
+    {
       component: (
         <Input
           label="Confirm Password"
@@ -86,17 +86,19 @@ const SignupForm = () => {
       </div>
       <div className="flex mt-3 justify-between">
         <div className="flex items-center flex-1 gap-2">
-          <Input
-            className="p-0!"
-            type="checkbox"
-            onChange={(e) => {
-              setSignupState((prev) => ({
-                ...prev,
-                isAgreed: e.target.checked,
-              }));
-            }}
-            checked={signupState.isAgreed}
-          />
+          <div className="">
+            <Input
+              className="p-0!"
+              type="checkbox"
+              onChange={(e) => {
+                setSignupState((prev) => ({
+                  ...prev,
+                  isAgreed: e.target.checked,
+                }));
+              }}
+              checked={signupState.isAgreed}
+            />
+          </div>
           <div className="text-text-muted py-4 text-[15px] flex-1">
             I agree to the{" "}
             <Link href="termsofservice" className="text-primary">

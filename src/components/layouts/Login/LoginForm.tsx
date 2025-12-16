@@ -52,17 +52,19 @@ const LoginForm = () => {
       </div>
       <div className="flex mt-3 justify-between">
         <div className="flex items-center flex-1 gap-2">
-          <Input
-            className="p-0!"
-            type="checkbox"
-            onChange={(e) => {
-              setLoginState((prev) => ({
-                ...prev,
-                isRemember: e.target.checked,
-              }));
-            }}
-            checked={loginState.isRemember}
-          />
+          <div className="">
+            <Input
+              className="p-0!"
+              type="checkbox"
+              onChange={(e) => {
+                setLoginState((prev) => ({
+                  ...prev,
+                  isRemember: e.target.checked,
+                }));
+              }}
+              checked={loginState.isRemember}
+            />
+          </div>
           <div className="text-text-muted flex-1">Remember me</div>
         </div>
         <Link href="forgotpass" className="text-primary underline">
