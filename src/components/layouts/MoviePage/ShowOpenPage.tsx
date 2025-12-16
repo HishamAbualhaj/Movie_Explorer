@@ -1,37 +1,32 @@
 "use client";
-
-import { useState } from "react";
-import HeroSection from "./PosterSection";
+import PosterSection from "./PosterSection";
 import EpisodesSection from "./EpisodesSection";
 import SideInformation from "./SideInformation";
-import PlayLoader from "@/components/ui/PlayLoader";
-import { ShowOpenPageProps } from "@/types/movie";
+import Details from "./Details";
 
-export default function ShowOpenPage(props: ShowOpenPageProps) {
-  const { isSubscribed = true } = props;
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handlePlay = () => {
-    setIsLoading(true);
-  };
-
+export default function ShowOpenPage() {
   return (
     <div className="min-h-screen bg-black text-white">
-      <HeroSection onPlay={handlePlay} isSubscribed={isSubscribed} />
-
+      <PosterSection />
       <div className="mx-auto max-w-6xl px-3 sm:px-4 py-8 grid gap-6 lg:grid-cols-[2fr_1fr]">
-        {/* Left: Episodes Section */}
         <div className="w-full">
-          <EpisodesSection isSubscribed={isSubscribed} />
+          <EpisodesSection />
         </div>
 
-        {/* Right: Side Information */}
-        <div className="h-fit sticky top-24">
+        <div className="flex flex-col gap-6">
           <SideInformation />
+
+          <Details
+            description="When a young boy vanishes, a small town uncovers a mystery involving secret experiments and supernatural forces."
+            cast={[
+              { id: 1, name: "Millie Bobby Brown" },
+              { id: 2, name: "Finn Wolfhard" },
+              { id: 3, name: "David Harbour" },
+              { id: 4, name: "Winona Ryder" },
+            ]}
+          />
         </div>
       </div>
-
-      {isLoading && <PlayLoader />}
     </div>
   );
 }

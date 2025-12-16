@@ -14,20 +14,9 @@ export interface ShowPageProps {
   };
 }
 
-export interface EpisodeSectionProps {
-  isSubscribed: boolean;
-}
-
-export interface ShowOpenPageProps {
-  isSubscribed?: boolean;
-}
-
 export interface Episode {
-  id: number;
-  title: string;
-  number: string;
+  number: number;
   duration: string;
-  isLocked: boolean;
 }
 
 export interface EpisodeSideProps {
@@ -35,8 +24,29 @@ export interface EpisodeSideProps {
 }
 
 export interface PosterSectionProps {
-  onPlay: () => void;
   title?: string;
   description?: string;
   image?: string;
+}
+export interface SideInfo {
+  label: string;
+  value: string;
+}
+
+export interface Review {
+  name: string;
+  country?: string;
+  rating: number;
+  opinion: string;
+}
+
+export interface Cast {
+  id: number;
+  name: string;
+  image?: string;
+}
+
+export interface DetailsProps {
+  description: string;
+  cast: Cast[];
 }
