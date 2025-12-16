@@ -21,19 +21,28 @@ export default function NovaInput({ isLoggedIn }: Props) {
 
     setThinking(true);
 
-    // // Call backend
-    // const res = await fetch("/api/nova", {
-    //   method: "POST",
-    //   body: JSON.stringify({ message: userMsg }),
-    // });
+    try {
+      const res = await fetch("/api/nova", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: userMsg }),
+      });
 
-    // const data = await res.json();
-    // const reply = data.reply;
+      const data = await res.json();
 
-    // Add real reply
-    // addMessage({ sender: "nova", text: reply });
-
-    // setThinking(false);
+      addMessage({
+        sender: "nova",
+        text: data.reply ?? "Sorry, I had trouble answering that.",
+      });
+      console.log("OPENAI_API_KEY:", process.env.OPENAI_API_KEY);
+    } catch (error) {
+      addMessage({
+        sender: "nova",
+        text: "Something went wrong. Please try again.",
+      });
+    } finally {
+      setThinking(false);
+    }
   };
 
   return (
