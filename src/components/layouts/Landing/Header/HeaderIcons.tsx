@@ -8,8 +8,13 @@ const HeaderIcons = ({ isMobile }: { isMobile: boolean }) => {
         isMobile ? "" : "max-md:hidden"
       }`}
     >
-      <Link href="/favourites" className="inline-block"><HeartIcon /></Link>
-      <Search />
+      <Link href="/favourites" className="inline-block">
+        <HeartIcon />
+      </Link>
+      <Link href="/search" className="inline-block">
+        <Search />
+      </Link>
+
       <BellRing />
     </div>
   );

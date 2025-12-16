@@ -24,32 +24,32 @@ const CategorySwiper = ({
     {
       image: "/action.png",
       title: "Action",
-      url: "/",
+      url: "/search?category=action",
     },
     {
       image: "/adventure.png",
       title: "Adventure",
-      url: "",
+      url: "/search?category=adventure",
     },
     {
       image: "/comedy.png",
       title: "Comedy",
-      url: "",
+      url: "/search?category=comedy",
     },
     {
       image: "/drama.png",
       title: "Drama",
-      url: "/",
+      url: "/search?category=drama",
     },
     {
       image: "/horror.png",
       title: "Horror",
-      url: "/",
+      url: "/search?category=horror",
     },
     {
       image: "/comedy.png",
       title: "Cartoon",
-      url: "/",
+      url: "/search?category=cartoon",
     },
   ];
 
