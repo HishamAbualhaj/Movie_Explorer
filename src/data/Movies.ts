@@ -1,6 +1,6 @@
 import { Movie } from "@/types/movie";
 
-const movies: Movie[] = [
+export const movies: Movie[] = [
   {
     id: "tt1375666",
     duration: 148,

@@ -1,6 +1,8 @@
+import FilterMovie from "@/components/layouts/Search/FilterMovie";
 import SearchMovie from "@/components/layouts/Search/SearchMovie";
+import MovieCard from "@/components/ui/Movie/MovieCard";
 import MovieSkeletonCard from "@/components/ui/Movie/MovieSkeletonCard";
-
+import { movies } from "@/data/Movies";
 
 const page = () => {
   const isFound = false;
@@ -17,18 +19,23 @@ const page = () => {
         <SearchMovie />
       </div>
 
-      <div className="mt-10 pb-20 ">
-        <div className="grid grid-cols-4 gap-3">
-          <MovieSkeletonCard />
-        </div>
+      <div className="py-5">
+        <FilterMovie />
+      </div>
 
-        <div className="">
-          {isFound && (
+      <div className="mt-10 pb-20 ">
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(350px,1fr))] gap-3">
+          {movies.map((movie, i) => (
+            <MovieCard key={i} {...movie} />
+          ))}
+        </div>
+        {isFound && (
+          <div className="h-[calc(100vh-500px)] mt-5">
             <div className="text-text-secondary text-2xl text-center font-medium">
               Start typing to explore movies from our collection.
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );
