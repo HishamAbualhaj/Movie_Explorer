@@ -2,7 +2,7 @@ import FilterMovie from "@/components/layouts/Search/FilterMovie";
 import SearchMovie from "@/components/layouts/Search/SearchMovie";
 import MovieCard from "@/components/ui/Movie/MovieCard";
 import MovieSkeletonCard from "@/components/ui/Movie/MovieSkeletonCard";
-import { movies } from "@/data/Movies";
+import { movies } from "@/data/movies";
 
 const page = () => {
   const isFound = false;
