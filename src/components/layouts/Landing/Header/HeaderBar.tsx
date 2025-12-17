@@ -18,7 +18,7 @@ const HeaderBar = () => {
       </div>
 
       <Activity mode={`${isOpen ? "visible" : "hidden"}`}>
-        <div className="px-5 absolute top-full left-0 z-10 w-full">
+        <div className="px-5 absolute top-full left-0 z-50 w-full">
           <div className="flex flex-col gap-3 bg-black border-3 border-border rounded-lg p-2 lg:px-7 px-5 ">
             {navs.map((nav, i) => (
               <Link
@@ -27,6 +27,7 @@ const HeaderBar = () => {
                 }`}
                 key={i}
                 href={nav.link}
+                onClick={() => setIsOpen(!isOpen)}
               >
                 {nav.title}
               </Link>
