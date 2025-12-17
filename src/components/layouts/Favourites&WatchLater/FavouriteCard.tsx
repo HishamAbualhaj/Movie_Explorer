@@ -1,17 +1,23 @@
 "use client";
 
-import { Movie } from "@/types/movie";
+import { Movie, Show } from "@/types/movie";
 import { useFavouritesStore } from "@/stores/favouritesStore";
 import HeartButton from "@/components/ui/HeartButton";
 import { notifyMovieAction } from "@/lib/movieNotifications";
+import WatchLaterButton from "@/components/ui/WatchLatterButton";
+import { useWatchLaterStore } from "@/stores/watchLaterStore";
 
 interface Props {
-  movie: Movie;
+  movie: Movie|Show;
+  isHeartButton?: boolean;
 }
 
-export default function FavouriteCard({ movie }: Props) {
+export default function FavouriteCard({ movie, isHeartButton = true }: Props) {
   const removeFromFavourites = useFavouritesStore(
     (state) => state.removeFavourite
+  );
+  const removeFromWatchLater = useWatchLaterStore(
+    (state) => state.removeWatchLater
   );
 
   const hasPoster = !!movie.poster;
@@ -36,11 +42,15 @@ export default function FavouriteCard({ movie }: Props) {
       <div className="p-4">
         <div className="flex items-center justify-between mb-2">
           <h2 className="text-xl font-semibold">{movie.title}</h2>
-
+          {isHeartButton ? (
           <HeartButton
             filled={true}
             onClick={() => (removeFromFavourites(movie.id), notifyMovieAction("removeFavourite", movie.title))}
-          />
+          />):(
+          <WatchLaterButton
+            active={true}
+            onClick={() => (removeFromWatchLater(movie.id), notifyMovieAction("removeWatchLater", movie.title))}
+          />)}
         </div>
 
         <div className="text-text-secondary text-sm space-y-1">

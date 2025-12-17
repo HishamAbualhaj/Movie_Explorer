@@ -1,9 +1,8 @@
-import { Movie } from "@/types/movie";
+import { Movie, Show } from "@/types/movie";
 import FavouriteCard from "./FavouriteCard";
-import MovieCard from "../Movies&Shows/MovieCard";
 
 interface Props {
-  movies: Movie[];
+  movies: (Movie|Show)[];
 }
 
 export default function FavouritesList({ movies }: Props) {
@@ -12,7 +11,7 @@ export default function FavouritesList({ movies }: Props) {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
       {movies.map((movie) => (
         <FavouriteCard key={movie.id} movie={movie} />
       ))}

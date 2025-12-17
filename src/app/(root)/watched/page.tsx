@@ -1,6 +1,6 @@
 "use client";
 
-import LoginRequiredBox from "@/components/layouts/Favourites/LoginRequiredBox";
+import LoginRequiredBox from "@/components/layouts/Favourites&WatchLater/LoginRequiredBox";
 import Button from "@/components/ui/Button";
 import WatchedButton from "@/components/ui/WatchedButton";
 import { useAuthStore } from "@/stores/authStore";
@@ -10,38 +10,46 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function WatchedPage() {
-  const { watched, removeWatched } = useWatchedStore();
+  const watched = useWatchedStore((state) => state.watched);
+  const removeWatched = useWatchedStore((state) => state.removeWatched);
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
 
   const [loading, setLoading] = useState(true);
-  
-    useEffect(() => {  
-      const timer = setTimeout(() => {
-        setLoading(false);
-      }, 2000);
-  
-      return () => clearTimeout(timer);
-    }, [watched]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, [watched]);
 
   return (
     <section className="flex-1 container mx-auto px-4 py-8">
       <div className="flex items-center justify-between mb-8">
-          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-text-main">Your Watched Media</h1>
+        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-text-main">
+          Your Watched Media
+        </h1>
 
-          <Link href="/movies&shows" className="inline-block">
-            <Button variant="primary" className="px-4 py-2 text-sm md:px-6 md:py-3 md:text-base">Add More Watched Media</Button>
-          </Link>
+        <Link href="/movies&shows" className="inline-block">
+          <Button
+            variant="primary"
+            className="px-4 py-2 text-sm md:px-6 md:py-3 md:text-base"
+          >
+            Add More Watched Media
+          </Button>
+        </Link>
+      </div>
+      {!isLoggedIn ? (
+        <LoginRequiredBox />
+      ) : loading ? (
+        <div className="w-full flex justify-center py-20">
+          <p className="text-text-secondary text-xl animate-pulse">
+            Loading your list...
+          </p>
         </div>
-        {!isLoggedIn ? (
-          <LoginRequiredBox />
-        ) : loading ? (
-          <div className="w-full flex justify-center py-20">
-            <p className="text-text-secondary text-xl animate-pulse">
-              Loading your favourites...
-            </p>
-          </div>
-        ) : (
-          <ul className="grid grid-cols-1 gap-6">
+      ) : (
+        <ul className="grid grid-cols-1 gap-6">
           {watched.map((m, i) => (
             <li
               key={m.id}
@@ -94,7 +102,7 @@ export default function WatchedPage() {
             </li>
           ))}
         </ul>
-        )}
+      )}
     </section>
   );
 }
