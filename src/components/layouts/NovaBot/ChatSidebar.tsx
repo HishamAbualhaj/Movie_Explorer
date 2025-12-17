@@ -19,7 +19,7 @@ export default function ChatSidebar() {
   }, [userId]);
 
   return (
-    <div className="w-64 bg-bg border-r border-border p-4 flex flex-col">
+    <div className="h-full w-64 bg-bg border-r border-border p-4 flex flex-col">
       <button
         onClick={clearChat}
         className="flex items-center gap-2 bg-primary text-text-main px-3 py-2 rounded-lg mb-4"
