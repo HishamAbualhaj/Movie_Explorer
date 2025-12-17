@@ -13,7 +13,7 @@ const Categories = ({ title, subtitle, py = "py-40" }: { title: string; subtitle
   const [progress, setProgress] = useState(0);
 
   return (
-    <div className={py}>
+    <div className={py} id="categories">
       <div className="container-wrapper">
         <div className="flex items-center justify-between">
           <LandingTitle title={title} subtitle={subtitle} />

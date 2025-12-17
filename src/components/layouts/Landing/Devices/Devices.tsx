@@ -45,7 +45,7 @@ const devices = [
 
 function Devices() {
   return (
-    <div className="container-wrapper pb-40">
+    <div className="container-wrapper pb-40" id="devices">
       <LandingTitle
         title="Explore Movies and Shows Across Various Devices."
         subtitle="With StreamVibe, you can explore movies and TV shows anytime, anywhere. The platform is built to work seamlessly across multiple devices, allowing you to browse details, summaries, and related information without limitations."

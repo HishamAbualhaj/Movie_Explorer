@@ -57,7 +57,7 @@ const Plans = () => {
     "monthly"
   );
   return (
-    <div className="container-wrapper pb-40">
+    <div className="container-wrapper pb-40" id="plans">
       <div className="flex max-lg:flex-col max-lg:gap-5 justify-between">
         <LandingTitle
           title="Choose the plan that's right for you"

@@ -6,10 +6,10 @@ const Footer = () => {
     {
       title: "Home",
       links: [
-        { title: "Categories", link: "/" },
-        { title: "Devices", link: "/" },
-        { title: "Pricing", link: "/" },
-        { title: "FAQ", link: "/" },
+        { title: "Categories", link: "/#categories" },
+        { title: "Devices", link: "/#devices" },
+        { title: "Pricing", link: "/#plans" },
+        { title: "FAQ", link: "/#faq" },
       ],
     },
     {

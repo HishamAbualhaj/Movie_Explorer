@@ -60,7 +60,7 @@ const FAQ = () => {
   ];
 
   return (
-    <div className="container-wrapper pb-40">
+    <div className="container-wrapper pb-40" id="faq">
       <div className="flex max-lg:flex-col max-lg:gap-5 justify-between lg:items-end items-start">
         <LandingTitle
           title="Frequently Asked Questions"
