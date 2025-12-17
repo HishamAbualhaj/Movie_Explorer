@@ -3,6 +3,7 @@
 import { Movie } from "@/types/movie";
 import { useFavouritesStore } from "@/stores/favouritesStore";
 import HeartButton from "@/components/ui/HeartButton";
+import { notifyMovieAction } from "@/lib/movieNotifications";
 
 interface Props {
   movie: Movie;
@@ -38,7 +39,7 @@ export default function FavouriteCard({ movie }: Props) {
 
           <HeartButton
             filled={true}
-            onClick={() => removeFromFavourites(movie.id)}
+            onClick={() => (removeFromFavourites(movie.id), notifyMovieAction("removeFavourite", movie.title))}
           />
         </div>
 
