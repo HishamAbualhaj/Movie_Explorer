@@ -28,7 +28,7 @@ export default function WatchedPage() {
     <section className="flex-1 container mx-auto px-4 py-8">
       <div className="flex items-center justify-between mb-8">
         <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-text-main">
-          Your Watched Media
+          Your Watched Movies & Shows
         </h1>
 
         <Link href="/movies&shows" className="inline-block">
@@ -36,7 +36,7 @@ export default function WatchedPage() {
             variant="primary"
             className="px-4 py-2 text-sm md:px-6 md:py-3 md:text-base"
           >
-            Add More Watched Media
+            Add More Watched Movies & Shows
           </Button>
         </Link>
       </div>

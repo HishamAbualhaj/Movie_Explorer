@@ -29,10 +29,10 @@ export default function FavouritesPage() {
     <section className="min-h-screen bg-bg text-text-main py-12 px-4 flex justify-center">
       <div className="w-full max-w-7xl">
         <div className="flex items-center justify-between mb-8">
-          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold">Your Favourite Movies</h1>
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold">Your Favourite Movies & Shows</h1>
 
           <Link href="/movies&shows" className="inline-block">
-            <Button variant="primary" className="px-4 py-2 text-sm md:px-6 md:py-3 md:text-base">Add More Favourites</Button>
+            <Button variant="primary" className="px-2 py-1 text-xs md:px-6 md:py-3 md:text-base">Add More Favourites & Shows</Button>
           </Link>
         </div>
         {!isLoggedIn ? (
