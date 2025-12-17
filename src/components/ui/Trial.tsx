@@ -9,15 +9,15 @@ const Trial = () => {
         <div className="lg:py-30 py-20 lg:px-16 sm:px-10 px-5 flex max-lg:flex-col max-lg:gap-8 items-center justify-between z-10 relative">
           <div className="max-lg:text-center">
             <div className="text-4xl text-white font-bold">
-              Start your free trial today!
+              Get started with StreamVibe today!
             </div>
             <div className="text-text-secondary mt-2">
-              This is a clear and concise call to action that encourages users
-              to sign up for a free trial of StreamVibe.
+              Explore movies and TV shows for free, chat with the AI in a limited way,<br />
+              or upgrade anytime to unlock full access and advanced features.
             </div>
           </div>
 
-          <Button>Start a Free Trail</Button>
+          <Button>Explore for Free</Button>
         </div>
       </div>
     </div>
