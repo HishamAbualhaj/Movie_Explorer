@@ -21,10 +21,12 @@ export function SupportHero() {
         <div className="w-full flex justify-center md:justify-end">
           <div className="w-full max-w-sm md:max-w-md lg:max-w-lg rounded-xl overflow-hidden shadow-lg">
             <Image
-              src={"/support-cta-image.png"}
+              src="/support-cta-image.png"
               alt="Support hero image"
               className="w-full h-auto object-cover"
               priority
+              width={600}
+              height={400}
             />
           </div>
         </div>
