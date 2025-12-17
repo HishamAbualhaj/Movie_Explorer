@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "../styles/globals.css";
 
 import { Manrope } from "next/font/google";
+import { Toaster } from "sonner";
 
 
 const manrope = Manrope({
@@ -24,6 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${manrope.variable}`}>
       <body className={`antialiased bg-bg`}>{children}</body>
+      <Toaster position="top-center" theme="dark" />
     </html>
   );
 }

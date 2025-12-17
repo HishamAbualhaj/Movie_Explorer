@@ -6,6 +6,7 @@ import WatchLaterButton from "@/components/ui/WatchLatterButton";
 import { useFavouritesStore } from "@/stores/favouritesStore";
 import { useWatchedStore } from "@/stores/watchedStore";
 import { useWatchLaterStore } from "@/stores/watchLaterStore";
+import { notifyMovieAction } from "@/lib/movieNotifications";
 
 type Props = {
   movie: Movie | Show;
@@ -85,7 +86,9 @@ export default function MovieCard({
           <HeartButton
             filled={isFavorite}
             onClick={() =>
-              isFavorite ? removeFavourite(media.id) : addFavourite(media)
+              isFavorite
+                ? (removeFavourite(media.id), notifyMovieAction("removeFavourite", media.title))
+                : (addFavourite(media), notifyMovieAction("favourite", media.title))
             }
           />
         </div>
@@ -103,15 +106,15 @@ export default function MovieCard({
           <div className="flex items-center gap-2">
             <WatchLaterButton
               active={isWatchLater}
-              onClick={() =>
-                isWatchLater ? removeWatchLater(media.id) : addWatchLater(media)
-              }
+              onClick={() => {
+                isWatchLater ? (removeWatchLater(media.id), notifyMovieAction("removeWatchLater", media.title)) : (addWatchLater(media), notifyMovieAction("watchLater", media.title));
+              }}
             />
             <WatchedButton
               active={isWatched}
-              onClick={() =>
-                isWatched ? removeWatched(media.id) : addWatched(media)
-              }
+              onClick={() => {
+                isWatched ? (removeWatched(media.id), notifyMovieAction("removeWatched", media.title)) : (addWatched(media), notifyMovieAction("watched", media.title));
+              }}
             />
           </div>
         </div>
