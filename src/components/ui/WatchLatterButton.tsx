@@ -1,31 +1,31 @@
-import { Heart, HeartIcon } from "lucide-react";
+import { Bookmark, BookmarkCheck, Clock, ClockIcon } from "lucide-react";
 
-interface HeartButtonProps {
-  filled?: boolean;
+interface WatchLaterButtonProps {
+  active?: boolean;
   size?: number;
   className?: string;
   onClick?: () => void;
 }
 
-export default function HeartButton({
-  filled = false,
+export default function WatchLaterButton({
+  active = false,
   size = 22,
   className = "",
   onClick,
-}: HeartButtonProps) {
+}: WatchLaterButtonProps) {
   return (
     <button
       onClick={onClick}
-      aria-label="Toggle Favourite"
+      aria-label="Toggle Watch Later"
       className={`transition-all duration-200 ${className}`}
     >
-      {filled ? (
-        <HeartIcon
+      {active ? (
+        <BookmarkCheck
           size={size}
-          className="text-red-500 fill-red-500 transition-all duration-200"
+          className="text-black fill-blue-400 transition-all duration-200"
         />
       ) : (
-        <Heart
+        <Bookmark
           size={size}
           className="text-white transition-all duration-200"
         />

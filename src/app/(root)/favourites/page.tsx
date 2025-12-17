@@ -31,7 +31,7 @@ export default function FavouritesPage() {
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold">Your Favourite Movies</h1>
 
-          <Link href="/" className="inline-block">
+          <Link href="/movies&shows" className="inline-block">
             <Button variant="primary" className="px-4 py-2 text-sm md:px-6 md:py-3 md:text-base">Add More Favourites</Button>
           </Link>
         </div>

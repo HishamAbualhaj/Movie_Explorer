@@ -1,5 +1,6 @@
 import { Movie } from "@/types/movie";
 import FavouriteCard from "./FavouriteCard";
+import MovieCard from "../Movies&Shows/MovieCard";
 
 interface Props {
   movies: Movie[];

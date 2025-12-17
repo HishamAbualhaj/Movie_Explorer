@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Categories />
+      <Categories title="Explore our wide variety of categories" subtitle="Whether you're looking for a comedy to make you laugh, a drama to make you think, or a documentary to learn something new"/>
       <Devices />
       <FAQ />
       <Plans />

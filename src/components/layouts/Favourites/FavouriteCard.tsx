@@ -24,10 +24,10 @@ export default function FavouriteCard({ movie }: Props) {
           onError={(e) => {
             (e.target as HTMLImageElement).style.display = "none";
           }}
-          className="w-full h-64 object-cover"
+          className="w-full h-90 object-cover"
         />
       ) : (
-        <div className="w-full h-64 bg-bg-light flex items-center justify-center text-text-secondary text-sm">
+        <div className="w-full h-90 bg-bg-light flex items-center justify-center text-text-secondary text-sm">
           No Image Available
         </div>
       )}

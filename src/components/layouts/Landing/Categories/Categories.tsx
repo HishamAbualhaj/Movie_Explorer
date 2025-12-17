@@ -4,21 +4,19 @@ import CategorySwiper from "./CategorySwiper";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import LandingTitle from "@/components/ui/LandingTitle";
 
-const Categories = () => {
+const Categories = ({ title, subtitle, py = "py-40" }: { title: string; subtitle: string; py?: string }) => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [length, setLength] = useState(0);
   const [progress, setProgress] = useState(0);
+
   return (
-    <div className="py-40">
-      <div className="container-wrapper ">
+    <div className={py}>
+      <div className="container-wrapper">
         <div className="flex items-center justify-between">
-          <LandingTitle
-            title="Explore our wide variety of categories"
-            subtitle="Whether you're looking for a comedy to make you laugh, a drama to make you think, or a documentary to learn something new"
-          />
+          <LandingTitle title={title} subtitle={subtitle} />
           <div className="flex max-lg:hidden items-center gap-2 bg-bg-dark p-3 rounded-md">
             <div
               ref={prevRef}
@@ -32,8 +30,7 @@ const Categories = () => {
                   key={i}
                   onClick={() => window._categorySwiper?.slideTo(i)}
                   className={`h-1 w-6 rounded-md transition-all duration-300
-                  ${activeIndex === i ? "bg-primary " : "bg-gray-600"}
-                `}
+                  ${activeIndex === i ? "bg-primary " : "bg-gray-600"}`}
                 />
               ))}
             </div>
@@ -45,7 +42,7 @@ const Categories = () => {
             </div>
           </div>
         </div>
-        <div className="mt-12">
+        <div className="mt-8">
           <CategorySwiper
             prevRef={prevRef}
             nextRef={nextRef}

@@ -3,10 +3,20 @@ export interface Movie {
   title: string;
   duration: number;
   year: number;
+
   poster?: string;
-  rating: number;
   overview: string;
+  rating: number;
+
+  releaseDate?: string;
+  duration?: number;
   genre?: string[];
+}
+
+export interface Show extends Omit<Movie, "duration"> {
+  seasons: number;
+  episodesCount?: number;
+  episodeDuration?: number;
 }
 
 export interface ShowPageProps {
