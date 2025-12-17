@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import heroImg from './assets/support-cta-image.png';
 
 export function SupportHero() {
   return (
@@ -22,7 +21,7 @@ export function SupportHero() {
         <div className="w-full flex justify-center md:justify-end">
           <div className="w-full max-w-sm md:max-w-md lg:max-w-lg rounded-xl overflow-hidden shadow-lg">
             <Image
-              src={heroImg}
+              src={"/support-cta-image.png"}
               alt="Support hero image"
               className="w-full h-auto object-cover"
               priority

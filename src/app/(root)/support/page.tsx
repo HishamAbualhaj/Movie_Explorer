@@ -1,7 +1,7 @@
 import { SupportHero } from "@/components/layouts/Support/SupportHero";
 import { SupportForm } from "@/components/layouts/Support/SupportForm/SupportForm";
-import { SupportCTA } from "@/components/layouts/Support/SupportCTA";
 import FAQ from "@/components/layouts/Landing/FAQ/FAQ";
+import Trial from "@/components/ui/Trial";
 
 export default function SupportPage() {
   return (
@@ -9,7 +9,7 @@ export default function SupportPage() {
       <SupportHero />
       <SupportForm />
       <FAQ />
-      <SupportCTA />
+      <Trial />
     </main>
   );
 }
