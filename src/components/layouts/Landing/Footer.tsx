@@ -6,7 +6,7 @@ const Footer = () => {
     {
       title: "Home",
       links: [
-        { title: "Categories", link: "/#categories" },
+        { title: "Categories", link: "/#categories-home" },
         { title: "Devices", link: "/#devices" },
         { title: "Pricing", link: "/#plans" },
         { title: "FAQ", link: "/#faq" },
@@ -15,19 +15,19 @@ const Footer = () => {
     {
       title: "Movies",
       links: [
-        { title: "Genres", link: "/" },
-        { title: "Trending", link: "/" },
-        { title: "New Release", link: "/" },
-        { title: "Popular", link: "/" },
+        { title: "Genres", link: "/movies&shows/#genres" },
+        { title: "Trending", link: "/movies&shows/#trending-movies" },
+        { title: "New Release", link: "/movies&shows/#new-releases-movies" },
+        { title: "Must-Watch", link: "/movies&shows/#must-watch-movies" },
       ],
     },
     {
       title: "Shows",
       links: [
-        { title: "Genres", link: "/" },
-        { title: "Trending", link: "/" },
-        { title: "New Release", link: "/" },
-        { title: "Popular", link: "/" },
+        { title: "Genres", link: "/movies&shows/#genres" },
+        { title: "Trending", link: "/movies&shows/#trending-shows" },
+        { title: "New Release", link: "/movies&shows/#new-releases-shows" },
+        { title: "Must-Watch", link: "/movies&shows/#must-watch-shows" },
       ],
     },
     {

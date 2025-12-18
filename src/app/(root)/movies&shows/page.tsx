@@ -2,8 +2,6 @@
 
 import { useState, useMemo } from "react";
 
-import { Movie } from "@/types/movie";
-
 // REPLACE these imports with your actual data source
 import { movies } from "@/data/movies";
 import { shows as showsData } from "@/data/shows";
@@ -31,9 +29,10 @@ export default function MoviesAndShowsPage() {
     <main className="min-h-screen bg-bg pt-4">
       <HeroSection />
 
-      <Categories title="Categories" subtitle="Explore Categories" py="py-10" />
+      <Categories title="Categories" subtitle="Explore Categories" id="genres" py="py-10" />
       <SectionRapper type="Movies">
         <SectionRow
+          id="trending-movies"
           title="Trending Now"
           items={trending}
           itemSize="small"
@@ -42,6 +41,7 @@ export default function MoviesAndShowsPage() {
         />
 
         <SectionRow
+          id="new-releases-movies"
           title="New Releases"
           items={newReleases}
           itemSize="small"
@@ -52,6 +52,7 @@ export default function MoviesAndShowsPage() {
         <Top10List title="Top 10 — Action" items={top10Action} />
 
         <SectionRow
+          id="must-watch-movies"
           title="Must-Watch Movies"
           items={mustWatch}
           itemSize="medium"
@@ -62,6 +63,7 @@ export default function MoviesAndShowsPage() {
       </SectionRapper>
       <SectionRapper type="Shows">
         <SectionRow
+          id="trending-shows"
           title="Trending Now"
           items={trendingShows}
           itemSize="small"
@@ -71,6 +73,7 @@ export default function MoviesAndShowsPage() {
         />
 
         <SectionRow
+          id="new-releases-shows"
           title="New Releases"
           items={newReleasesShows}
           itemSize="small"
@@ -79,6 +82,7 @@ export default function MoviesAndShowsPage() {
         />
 
         <SectionRow
+          id="must-watch-shows"
           title="Must-Watch Movies"
           items={mustWatchShows}
           itemSize="medium"

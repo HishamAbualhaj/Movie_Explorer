@@ -4,7 +4,7 @@ import CategorySwiper from "./CategorySwiper";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import LandingTitle from "@/components/ui/LandingTitle";
 
-const Categories = ({ title, subtitle, py = "py-40" }: { title: string; subtitle: string; py?: string }) => {
+const Categories = ({ title, subtitle, id="categories-home", py = "py-40" }: { title: string; subtitle: string; id?: string; py?: string }) => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
@@ -13,7 +13,7 @@ const Categories = ({ title, subtitle, py = "py-40" }: { title: string; subtitle
   const [progress, setProgress] = useState(0);
 
   return (
-    <div className={py} id="categories">
+    <div className={py} id={id}>
       <div className="container-wrapper">
         <div className="flex items-center justify-between">
           <LandingTitle title={title} subtitle={subtitle} />
