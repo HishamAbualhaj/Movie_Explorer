@@ -3,6 +3,9 @@ import { useState } from "react";
 import { SendHorizontal } from "lucide-react";
 import Link from "next/link";
 import { useChatStore } from "@/stores/chatStore";
+import { useFavouritesStore } from "@/stores/favouritesStore";
+import { useWatchedStore } from "@/stores/watchedStore";
+import { useWatchLaterStore } from "@/stores/watchLaterStore";
 
 type Props = { isLoggedIn: boolean };
 
@@ -11,6 +14,9 @@ export default function NovaInput({ isLoggedIn }: Props) {
   const addMessage = useChatStore((state) => state.addMessage);
   const isThinking = useChatStore((s) => s.isThinking);
   const setThinking = useChatStore((s) => s.setThinking);
+  const favorites = useFavouritesStore((s) => s.favourites);
+  const watched = useWatchedStore((s) => s.watched);
+  const watchLater = useWatchLaterStore((s) => s.watchLater);
 
   const handleSend = async () => {
     if (!isLoggedIn || !input.trim() || isThinking) return;
@@ -22,10 +28,20 @@ export default function NovaInput({ isLoggedIn }: Props) {
     setThinking(true);
 
     // Call backend
+    const userContext = {
+      name: "Omar",
+      favorites: favorites.map((m) => m.title),
+      watched: watched.map((m) => m.title),
+      watchLater: watchLater.map((m) => m.title),
+    };
+
     const res = await fetch("/api/chat", {
       method: "POST",
-      headers: { "Content-Type": "application/json" }, 
-      body: JSON.stringify({ message: userMsg }),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        message: userMsg,
+        user: userContext,
+      }),
     });
 
     const data = await res.json();
