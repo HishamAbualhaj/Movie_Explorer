@@ -21,19 +21,20 @@ export default function NovaInput({ isLoggedIn }: Props) {
 
     setThinking(true);
 
-    // // Call backend
-    // const res = await fetch("/api/nova", {
-    //   method: "POST",
-    //   body: JSON.stringify({ message: userMsg }),
-    // });
+    // Call backend
+    const res = await fetch("/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" }, 
+      body: JSON.stringify({ message: userMsg }),
+    });
 
-    // const data = await res.json();
-    // const reply = data.reply;
+    const data = await res.json();
+    const reply = data.reply;
 
     // Add real reply
-    // addMessage({ sender: "nova", text: reply });
+    addMessage({ sender: "nova", text: reply });
 
-    // setThinking(false);
+    setThinking(false);
   };
 
   return (
