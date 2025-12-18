@@ -6,7 +6,7 @@ export function SupportHero() {
       <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         <div className="space-y-6 text-center md:text-left">
           <p className="uppercase text-xs md:text-sm tracking-[0.2em] text-text-muted">
-            Start your free trial today!
+            Get started with StreamVibe today!
           </p>
 
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight">

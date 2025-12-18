@@ -14,41 +14,41 @@ const devices = [
   {
     icon: Smartphone,
     title: "Smartphones",
-    desc: "StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store",
+    desc: "StreamVibe is designed to present detailed movie and TV show information across different platforms, offering a consistent and accessible browsing experience.",
   },
   {
     icon: Tablet,
     title: "Tablet",
-    desc: "StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store",
+    desc: "StreamVibe is designed to present detailed movie and TV show information across different platforms, offering a consistent and accessible browsing experience.",
   },
   {
     icon: Tv,
     title: "Smart TV",
-    desc: "StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store",
+    desc: "StreamVibe is designed to present detailed movie and TV show information across different platforms, offering a consistent and accessible browsing experience.",
   },
   {
     icon: Laptop,
     title: "Laptops",
-    desc: "StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store",
+    desc: "StreamVibe is designed to present detailed movie and TV show information across different platforms, offering a consistent and accessible browsing experience.",
   },
   {
     icon: Gamepad2,
     title: "Gaming Consoles",
-    desc: "StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store",
+    desc: "StreamVibe is designed to present detailed movie and TV show information across different platforms, offering a consistent and accessible browsing experience.",
   },
   {
     icon: Headset,
     title: "VR Headsets",
-    desc: "StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store",
+    desc: "StreamVibe is designed to present detailed movie and TV show information across different platforms, offering a consistent and accessible browsing experience.",
   },
 ];
 
 function Devices() {
   return (
-    <div className="container-wrapper pb-40">
+    <div className="container-wrapper pb-40" id="devices">
       <LandingTitle
-        title="We Provide you streaming experience across various devices."
-        subtitle="With StreamVibe, you can enjoy your favorite movies and TV shows anytime, anywhere. Our platform is designed to be compatible with a wide range of devices, ensuring that you never miss a moment of entertainment."
+        title="Explore Movies and Shows Across Various Devices."
+        subtitle="With StreamVibe, you can explore movies and TV shows anytime, anywhere. The platform is built to work seamlessly across multiple devices, allowing you to browse details, summaries, and related information without limitations."
       />
       <div className="mt-10 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8">
         {devices.map((device, i) => (
