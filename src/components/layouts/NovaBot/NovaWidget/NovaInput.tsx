@@ -29,7 +29,7 @@ export default function NovaInput({ isLoggedIn }: Props) {
 
     // Call backend
     const userContext = {
-      name: "Omar",
+      name: "Anonymous",
       favorites: favorites.map((m) => m.title),
       watched: watched.map((m) => m.title),
       watchLater: watchLater.map((m) => m.title),
