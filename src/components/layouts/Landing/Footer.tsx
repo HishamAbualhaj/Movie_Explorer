@@ -32,7 +32,7 @@ const Footer = () => {
     },
     {
       title: "Support",
-      links: [{ title: "Contact Us", link: "/" }],
+      links: [{ title: "Contact Us", link: "/support/#support-form" }],
     },
     {
       title: "Subscription",
