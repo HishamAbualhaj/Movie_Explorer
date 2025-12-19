@@ -17,7 +17,7 @@ export default function ShowOpenPage(props: ShowOpenPageProps) {
 
   return (
     <div className="min-h-screen bg-black text-white">
-      <HeroSection onPlay={handlePlay} isSubscribed={isSubscribed} />
+      <HeroSection onPlay={handlePlay} />
 
       <div className="mx-auto max-w-6xl px-3 sm:px-4 py-8 grid gap-6 lg:grid-cols-[2fr_1fr]">
         {/* Left: Episodes Section */}

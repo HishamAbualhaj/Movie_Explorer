@@ -9,7 +9,6 @@ export interface Movie {
   rating: number;
 
   releaseDate?: string;
-  duration?: number;
   genre?: string[];
 }
 

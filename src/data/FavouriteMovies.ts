@@ -7,8 +7,10 @@ export const favouriteMovies: Movie[] = [
     year: 2010,
     poster: "/images/inception.jpg",
     rating: 8.8,
-    overview: "A thief who steals corporate secrets through the use of dream-sharing technology.",
-    genre: ["Action", "Sci-Fi"]
+    overview:
+      "A thief who steals corporate secrets through the use of dream-sharing technology.",
+    genre: ["Action", "Sci-Fi"],
+    duration: 150,
   },
   {
     id: "2",
@@ -16,8 +18,10 @@ export const favouriteMovies: Movie[] = [
     year: 1999,
     poster: "/images/matrix.jpg",
     rating: 8.7,
-    overview: "A computer hacker learns about the true nature of his reality and his role in the war against its controllers.",
-    genre: ["Action", "Sci-Fi"]
+    overview:
+      "A computer hacker learns about the true nature of his reality and his role in the war against its controllers.",
+    genre: ["Action", "Sci-Fi"],
+    duration: 150,
   },
   {
     id: "3",
@@ -25,8 +29,10 @@ export const favouriteMovies: Movie[] = [
     year: 2014,
     poster: "/images/interstellar.jpg",
     rating: 8.6,
-    overview: "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
-    genre: ["Adventure", "Drama", "Sci-Fi"]
+    overview:
+      "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
+    genre: ["Adventure", "Drama", "Sci-Fi"],
+    duration: 150,
   },
   {
     id: "4",
@@ -34,8 +40,10 @@ export const favouriteMovies: Movie[] = [
     year: 2008,
     poster: "/images/dark-knight.jpg",
     rating: 9.0,
-    overview: "Batman faces the Joker, a criminal mastermind who seeks to create chaos in Gotham City.",
-    genre: ["Action", "Crime", "Drama"]
+    overview:
+      "Batman faces the Joker, a criminal mastermind who seeks to create chaos in Gotham City.",
+    genre: ["Action", "Crime", "Drama"],
+    duration: 150,
   },
   {
     id: "5",
@@ -43,8 +51,10 @@ export const favouriteMovies: Movie[] = [
     year: 1994,
     poster: "/images/pulp-fiction.jpg",
     rating: 8.9,
-    overview: "The lives of two mob hitmen, a boxer, a gangster's wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
-    genre: ["Crime", "Drama"]
+    overview:
+      "The lives of two mob hitmen, a boxer, a gangster's wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+    genre: ["Crime", "Drama"],
+    duration: 150,
   },
   {
     id: "6",
@@ -52,8 +62,10 @@ export const favouriteMovies: Movie[] = [
     year: 1999,
     poster: "/images/fight-club.jpg",
     rating: 8.8,
-    overview: "An insomniac office worker and a soap maker form an underground fight club that evolves into something much more.",
-    genre: ["Drama"]
+    overview:
+      "An insomniac office worker and a soap maker form an underground fight club that evolves into something much more.",
+    genre: ["Drama"],
+    duration: 150,
   },
   {
     id: "7",
@@ -61,8 +73,10 @@ export const favouriteMovies: Movie[] = [
     year: 1994,
     poster: "/images/forrest-gump.jpg",
     rating: 8.8,
-    overview: "The story of Forrest Gump, a man with a low IQ, witnessing and influencing key historical events in the 20th century.",
-    genre: ["Drama", "Romance"]
+    overview:
+      "The story of Forrest Gump, a man with a low IQ, witnessing and influencing key historical events in the 20th century.",
+    genre: ["Drama", "Romance"],
+    duration: 150,
   },
   {
     id: "8",
@@ -70,8 +84,10 @@ export const favouriteMovies: Movie[] = [
     year: 1994,
     poster: "/images/shawshank.jpg",
     rating: 9.3,
-    overview: "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
-    genre: ["Drama"]
+    overview:
+      "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
+    genre: ["Drama"],
+    duration: 150,
   },
   {
     id: "9",
@@ -79,8 +95,10 @@ export const favouriteMovies: Movie[] = [
     year: 1972,
     poster: "/images/godfather.jpg",
     rating: 9.2,
-    overview: "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
-    genre: ["Crime", "Drama"]
+    overview:
+      "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
+    genre: ["Crime", "Drama"],
+    duration: 150,
   },
   {
     id: "10",
@@ -88,8 +106,10 @@ export const favouriteMovies: Movie[] = [
     year: 2000,
     poster: "/images/gladiator.jpg",
     rating: 8.5,
-    overview: "A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.",
-    genre: ["Action", "Adventure", "Drama"]
+    overview:
+      "A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.",
+    genre: ["Action", "Adventure", "Drama"],
+    duration: 150,
   },
   {
     id: "11",
@@ -97,8 +117,10 @@ export const favouriteMovies: Movie[] = [
     year: 1994,
     poster: "/images/lion-king.jpg",
     rating: 8.5,
-    overview: "Lion prince Simba flees his kingdom only to learn the true meaning of responsibility and bravery.",
-    genre: ["Animation", "Adventure", "Drama"]
+    overview:
+      "Lion prince Simba flees his kingdom only to learn the true meaning of responsibility and bravery.",
+    genre: ["Animation", "Adventure", "Drama"],
+    duration: 150,
   },
   {
     id: "12",
@@ -106,7 +128,9 @@ export const favouriteMovies: Movie[] = [
     year: 1997,
     poster: "/images/titanic.jpg",
     rating: 7.8,
-    overview: "A seventeen-year-old aristocrat falls in love with a kind but poor artist aboard the luxurious Titanic.",
-    genre: ["Drama", "Romance"]
-  }
+    overview:
+      "A seventeen-year-old aristocrat falls in love with a kind but poor artist aboard the luxurious Titanic.",
+    genre: ["Drama", "Romance"],
+    duration: 150,
+  },
 ];
