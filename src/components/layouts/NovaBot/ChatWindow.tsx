@@ -10,15 +10,19 @@ export default function ChatWindow() {
   const isLoggedIn = useAuthStore((s) => s.isLoggedIn);
 
   return (
-    <div className="flex flex-col flex-1">
-      <div className="p-4 border-b border-t border-border bg-bg-dark flex items-center justify-between">
+    <div className="flex flex-col h-full min-h-0">
+      <div className="hidden md:flex p-4 border-b border-border bg-bg-dark items-center justify-between">
         <h1 className="text-xl font-semibold">Nova</h1>
         {isThinking && <p className="text-text-secondary">typing...</p>}
       </div>
 
-      <NovaMessages isOpen={true} isLoggedIn={isLoggedIn} />
+      <div className="flex-1 min-h-0 overflow-y-auto">
+        <NovaMessages isOpen={true} isLoggedIn={isLoggedIn} />
+      </div>
 
-      <NovaInput isLoggedIn={isLoggedIn} />
+      <div className="border-t border-border">
+        <NovaInput isLoggedIn={isLoggedIn} />
+      </div>
     </div>
   );
 }

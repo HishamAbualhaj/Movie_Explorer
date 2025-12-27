@@ -2,6 +2,7 @@ import MovieCard from "./MovieCard";
 import { Movie, Show } from "@/types/movie";
 
 type RowProps = {
+  id: string;
   title: string;
   items: Array<Movie | Show>;
   itemSize?: "small" | "medium";
@@ -13,6 +14,7 @@ type RowProps = {
 };
 
 export default function SectionRow({
+  id,
   title,
   items,
   itemSize = "small",
@@ -23,7 +25,7 @@ export default function SectionRow({
   showSeasons = false,
 }: RowProps) {
   return (
-    <section className="my-8">
+    <section className="my-8" id={id}>
       <div className="flex items-center justify-between mb-4 px-4 sm:px-6 lg:px-8">
         <h2 className="text-xl font-semibold text-text-main">{title}</h2>
 

@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import heroImg from './assets/support-cta-image.png';
 
 export function SupportHero() {
   return (
@@ -7,7 +6,7 @@ export function SupportHero() {
       <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         <div className="space-y-6 text-center md:text-left">
           <p className="uppercase text-xs md:text-sm tracking-[0.2em] text-text-muted">
-            Start your free trial today!
+            Get started with StreamVibe today!
           </p>
 
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold leading-tight">
@@ -22,10 +21,12 @@ export function SupportHero() {
         <div className="w-full flex justify-center md:justify-end">
           <div className="w-full max-w-sm md:max-w-md lg:max-w-lg rounded-xl overflow-hidden shadow-lg">
             <Image
-              src={heroImg}
+              src="/support-cta-image.png"
               alt="Support hero image"
               className="w-full h-auto object-cover"
               priority
+              width={600}
+              height={400}
             />
           </div>
         </div>
