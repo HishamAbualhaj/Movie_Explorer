@@ -2,41 +2,16 @@
 import Button from "@/components/ui/Button";
 import DataTable from "@/components/ui/DataTable";
 import Input from "@/components/ui/Input";
+import { useMovies } from "@/hooks/useMovies";
+import { supabase } from "@/supabase/client";
 import { Column, User } from "@/types";
 import { Movie } from "@/types/movie";
+import { useQueryClient } from "@tanstack/react-query";
 import { X } from "lucide-react";
 import { useState } from "react";
+import { toast } from "sonner";
 
 const MoviesPage = () => {
-  const movies: Movie[] = [
-    {
-      id: "1",
-      title: "Inception",
-      genre: ["Sci-Fi"],
-      year: 2010,
-      rating: 8.8,
-      duration: 150,
-      overview: "",
-    },
-    {
-      id: "2",
-      title: "Titanic",
-      genre: ["Drama"],
-      year: 1997,
-      rating: 7.8,
-      duration: 120,
-      overview: "",
-    },
-    {
-      id: "3",
-      title: "Avengers",
-      genre: ["Action"],
-      year: 2012,
-      rating: 8.1,
-      duration: 100,
-      overview: "",
-    },
-  ];
   const columns: Column<Movie>[] = [
     { key: "title", label: "Title" },
     { key: "genre", label: "Genre" },
@@ -61,10 +36,30 @@ const MoviesPage = () => {
       ),
     },
   ];
+  const queryClient = useQueryClient();
+
+  const { data: movies, isLoading } = useMovies();
 
   const [search, setSearch] = useState("");
   const [modal, setModal] = useState(false);
   const [selectedMoive, setSelectedMoive] = useState<Movie | null>(null);
+
+  const deleteMovie = async (id: string | undefined) => {
+    if (!id) return;
+    const { data, error } = await supabase.from("movies").delete().eq("id", id);
+
+    if (error) {
+      console.error("Failed to delete movie:", error.message);
+      return { success: false, error };
+    }
+
+    toast("Movie deleted");
+    setModal(false);
+    await queryClient.invalidateQueries({
+      queryKey: ["movies"],
+    });
+    return { success: true, data };
+  };
 
   return (
     <div className="p-6 space-y-4 bg-bg min-h-screen">
@@ -94,14 +89,27 @@ const MoviesPage = () => {
             </div>
           </div>
           <div className="flex gap-3">
-            <Button className="py-2!">Yes?</Button>
-            <Button className="py-2!" variant="secondary">
-              No
-            </Button>
+            {isLoading ? (
+              <Button className="py-2!">Loading ...</Button>
+            ) : (
+              <>
+                <Button
+                  onClick={() => {
+                    deleteMovie(selectedMoive?.id);
+                  }}
+                  className="py-2!"
+                >
+                  Yes?
+                </Button>
+                <Button className="py-2!" variant="secondary">
+                  No
+                </Button>
+              </>
+            )}
           </div>
         </div>
       )}
-      <DataTable data={movies} columns={columns} />
+      <DataTable data={movies ?? []} columns={columns} />
     </div>
   );
 };
