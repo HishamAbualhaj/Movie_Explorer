@@ -9,47 +9,74 @@ type plan = {
   desc: string;
   price: string;
   type: "monthly" | "yearly";
+  features: string[];
 };
 const Plans = () => {
   const plansMonthly: plan[] = [
     {
-      title: "Basic Plan",
-      desc: "Enjoy an extensive library of movies and shows, featuring a range of content, including recently released titles.",
-      price: "9.99",
+      title: "Free Plan",
+      desc: "Perfect for casual users who want to explore movies and trailers.",
+      price: "0",
       type: "monthly",
-    },
-    {
-      title: "Standard Plan",
-      desc: "Access to a wider selection of movies and shows, including most new releases and exclusive content",
-      price: "12.99",
-      type: "monthly",
+      features: [
+        "Access to basic movie database",
+        "Search & filter movies",
+        "Watch trailers",
+        "Add favorites (limit 10)",
+        "Basic recommendations",
+        "Signup/Login required",
+        "Ads supported",
+      ],
     },
     {
       title: "Premium Plan",
-      desc: "Access to a widest selection of movies and shows, including all new releases and Offline Viewing",
-      price: "14.99",
+      desc: "Ideal for movie enthusiasts who want unlimited access and ad-free experience.",
+      price: "9.99",
       type: "monthly",
+      features: [
+        "Everything in Free plan",
+        "Unlimited favorites & watchlist",
+        "Full HD streaming",
+        "Ad-free experience",
+        "Advanced recommendations",
+        "Create & share playlists",
+        "Priority support / notifications",
+        "Early access to new features",
+      ],
     },
   ];
 
   const plansYearly: plan[] = [
     {
-      title: "Basic Plan",
-      desc: "Enjoy an extensive library of movies and shows, featuring a range of content, including recently released titles.",
-      price: "99.99",
-      type: "monthly",
-    },
-    {
-      title: "Standard Plan",
-      desc: "Access to a wider selection of movies and shows, including most new releases and exclusive content",
-      price: "120.99",
-      type: "monthly",
+      title: "Free Plan",
+      desc: "Perfect for casual users who want to explore movies and trailers.",
+      price: "0",
+      type: "yearly",
+      features: [
+        "Access to basic movie database",
+        "Search & filter movies",
+        "Watch trailers",
+        "Add favorites (limit 10)",
+        "Basic recommendations",
+        "Signup/Login required",
+        "Ads supported",
+      ],
     },
     {
       title: "Premium Plan",
-      desc: "Access to a widest selection of movies and shows, including all new releases and Offline Viewing",
-      price: "160.99",
-      type: "monthly",
+      desc: "Ideal for movie enthusiasts who want unlimited access and ad-free experience.",
+      price: "99.99",
+      type: "yearly",
+      features: [
+        "Everything in Free plan",
+        "Unlimited favorites & watchlist",
+        "Full HD streaming",
+        "Ad-free experience",
+        "Advanced recommendations",
+        "Create & share playlists",
+        "Priority support / notifications",
+        "Early access to new features",
+      ],
     },
   ];
 
@@ -68,7 +95,7 @@ const Plans = () => {
           setCurrentPlan={setCurrentPlan}
         />
       </div>
-      <div className="mt-10 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
+      <div className="mt-10 flex max-lg:flex-col gap-5">
         {currentPlan === "monthly"
           ? plansMonthly.map((plan, i) => <PlanCard key={i} {...plan} />)
           : plansYearly.map((plan, i) => <PlanCard key={i} {...plan} />)}
