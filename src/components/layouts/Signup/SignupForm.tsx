@@ -1,16 +1,28 @@
 "use client";
+import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
+import { supabase } from "@/supabase/client";
 import Link from "next/link";
-import { useState } from "react";
+import { useFormik } from "formik";
+import { signupSchema } from "@/lib/validation/auth.schema";
+import { toast } from "sonner";
+import { redirect } from "next/navigation";
 
 const SignupForm = () => {
-  const [signupState, setSignupState] = useState({
-    fullname: "",
-    email: "",
-    password: "",
-    confirmPass: "",
-    isAgreed: false,
+  const formik = useFormik({
+    initialValues: {
+      fullname: "",
+      email: "",
+      password: "",
+      confirmPass: "",
+      isAgreed: false,
+    },
+    validationSchema: signupSchema,
+    onSubmit: (values) => {
+      signUp(values.email, values.password);
+    },
   });
+
   const inputs = [
     {
       component: (
@@ -18,13 +30,12 @@ const SignupForm = () => {
           label="Full Name"
           type="text"
           placeholder="Hisham Abualhaj"
-          onChange={(e) => {
-            setSignupState((prev) => ({
-              ...prev,
-              fullname: e.target.value,
-            }));
-          }}
-          value={signupState.fullname}
+          {...formik.getFieldProps("fullname")}
+          error={
+            formik.touched.fullname && formik.errors.fullname
+              ? formik.errors.fullname
+              : undefined
+          }
         />
       ),
     },
@@ -34,13 +45,12 @@ const SignupForm = () => {
           label="Email"
           type="email"
           placeholder="you@example.com"
-          onChange={(e) => {
-            setSignupState((prev) => ({
-              ...prev,
-              email: e.target.value,
-            }));
-          }}
-          value={signupState.email}
+          {...formik.getFieldProps("email")}
+          error={
+            formik.touched.email && formik.errors.email
+              ? formik.errors.email
+              : undefined
+          }
         />
       ),
     },
@@ -50,13 +60,12 @@ const SignupForm = () => {
           label="Password"
           type="password"
           placeholder="Create a strong password"
-          onChange={(e) => {
-            setSignupState((prev) => ({
-              ...prev,
-              password: e.target.value,
-            }));
-          }}
-          value={signupState.password}
+          {...formik.getFieldProps("password")}
+          error={
+            formik.touched.password && formik.errors.password
+              ? formik.errors.password
+              : undefined
+          }
         />
       ),
     },
@@ -66,51 +75,73 @@ const SignupForm = () => {
           label="Confirm Password"
           type="password"
           placeholder="Confirm your password"
-          onChange={(e) => {
-            setSignupState((prev) => ({
-              ...prev,
-              confirmPass: e.target.value,
-            }));
-          }}
-          value={signupState.confirmPass}
+          {...formik.getFieldProps("confirmPass")}
+          error={
+            formik.touched.confirmPass && formik.errors.confirmPass
+              ? formik.errors.confirmPass
+              : undefined
+          }
         />
       ),
     },
   ];
+
+
+
+  const signUp = async (email: string, password: string) => {
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+    });
+
+    if (error) return toast("Something went wrong");
+
+    toast("Signed up successfully");
+
+    return redirect("/");
+  };
+
   return (
     <>
-      <div className="flex flex-col gap-5 mt-8">
-        {inputs.map((input, i) => (
-          <div key={i}>{input.component}</div>
-        ))}
-      </div>
-      <div className="flex mt-3 justify-between">
-        <div className="flex items-center flex-1 gap-2">
-          <div className="">
-            <Input
-              className="p-0!"
-              type="checkbox"
-              onChange={(e) => {
-                setSignupState((prev) => ({
-                  ...prev,
-                  isAgreed: e.target.checked,
-                }));
-              }}
-              checked={signupState.isAgreed}
-            />
-          </div>
-          <div className="text-text-muted py-4 text-[15px] flex-1">
-            I agree to the{" "}
-            <Link href="termsofservice" className="text-primary">
-              Terms of Service
-            </Link>{" "}
-            and{" "}
-            <Link className="text-primary" href="privacy">
-              Privacy Policy
-            </Link>
+      <form onSubmit={formik.handleSubmit}>
+        <div className="flex flex-col gap-5 mt-8">
+          {inputs.map((input, i) => (
+            <div key={i}>{input.component}</div>
+          ))}
+        </div>
+        <div className="flex mt-3 justify-between">
+          <div className="flex items-center flex-1 gap-2">
+            <div className="">
+              <Input
+                className="p-0!"
+                type="checkbox"
+                {...formik.getFieldProps("isAgreed")}
+                checked={formik.values.isAgreed}
+                error={
+                  formik.touched.isAgreed && formik.errors.isAgreed
+                    ? formik.errors.isAgreed
+                    : undefined
+                }
+              />
+            </div>
+            <div className="text-text-muted py-4 text-[15px] flex-1">
+              I agree to the
+              <Link href="termsofservice" className="text-primary">
+                Terms of Service
+              </Link>
+              and
+              <Link className="text-primary" href="privacy">
+                Privacy Policy
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
+        <div className="flex justify-center mt-3">
+          <Button type="submit" className="py-2!">
+            Create Account
+          </Button>
+        </div>
+      </form>
     </>
   );
 };

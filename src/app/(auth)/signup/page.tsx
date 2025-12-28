@@ -3,7 +3,6 @@ import MovieBackground from "@/components/ui/MovieBackground";
 import { Check, Film } from "lucide-react";
 import { socials } from "../login/page";
 import SignupForm from "@/components/layouts/Signup/SignupForm";
-import Button from "@/components/ui/Button";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 const page = () => {
@@ -82,10 +81,7 @@ const page = () => {
           </div>
 
           <SignupForm />
-          <div className="flex justify-center mt-3">
-            <Button className="py-2!">Create Account</Button>
-          </div>
-
+        
           <div className="mt-5 flex justify-center gap-2">
             Already have an account?{" "}
             <Link className="text-primary underline" href="/login">

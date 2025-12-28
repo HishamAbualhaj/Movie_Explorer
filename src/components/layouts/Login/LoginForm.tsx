@@ -1,13 +1,22 @@
 "use client";
+import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
+import { loginSchema } from "@/lib/validation/auth.schema";
+import { supabase } from "@/supabase/client";
+import { useFormik } from "formik";
 import Link from "next/link";
-import { useState } from "react";
+import { toast } from "sonner";
 
 const LoginForm = () => {
-  const [loginState, setLoginState] = useState({
-    email: "",
-    password: "",
-    isRemember: false,
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: loginSchema,
+    onSubmit: (values) => {
+      signIn(values.email, values.password);
+    },
   });
   const inputs = [
     {
@@ -16,13 +25,12 @@ const LoginForm = () => {
           label="Email"
           type="email"
           placeholder="you@example.com"
-          onChange={(e) => {
-            setLoginState((prev) => ({
-              ...prev,
-              email: e.target.value,
-            }));
-          }}
-          value={loginState.email}
+          {...formik.getFieldProps("email")}
+          error={
+            formik.touched.email && formik.errors.email
+              ? formik.errors.email
+              : undefined
+          }
         />
       ),
     },
@@ -32,17 +40,29 @@ const LoginForm = () => {
           label="Password"
           type="password"
           placeholder="Enter you password"
-          onChange={(e) => {
-            setLoginState((prev) => ({
-              ...prev,
-              password: e.target.value,
-            }));
-          }}
-          value={loginState.password}
+          {...formik.getFieldProps("password")}
+          error={
+            formik.touched.password && formik.errors.password
+              ? formik.errors.password
+              : undefined
+          }
         />
       ),
     },
   ];
+
+  const signIn = async (email: string, password: string) => {
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (error) return toast("Something went wrong");
+
+    toast("Logined successfully");
+    return data;
+  };
+
   return (
     <>
       <div className="flex flex-col gap-5 mt-8">
@@ -53,23 +73,18 @@ const LoginForm = () => {
       <div className="flex mt-3 justify-between">
         <div className="flex items-center flex-1 gap-2">
           <div className="">
-            <Input
-              className="p-0!"
-              type="checkbox"
-              onChange={(e) => {
-                setLoginState((prev) => ({
-                  ...prev,
-                  isRemember: e.target.checked,
-                }));
-              }}
-              checked={loginState.isRemember}
-            />
+            <Input className="p-0!" type="checkbox" />
           </div>
           <div className="text-text-muted flex-1">Remember me</div>
         </div>
         <Link href="forgotpass" className="text-primary underline">
           Forgot password
         </Link>
+      </div>
+      <div className="flex justify-center mt-3">
+        <Button type="submit" className="py-2!">
+          Login
+        </Button>
       </div>
     </>
   );

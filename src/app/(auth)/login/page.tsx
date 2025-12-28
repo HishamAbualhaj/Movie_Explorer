@@ -1,5 +1,4 @@
 import LoginForm from "@/components/layouts/Login/LoginForm";
-import Button from "@/components/ui/Button";
 import Logo from "@/components/ui/Logo";
 import MovieBackground from "@/components/ui/MovieBackground";
 import { cn } from "@/lib/utils";
@@ -103,10 +102,7 @@ const page = () => {
           </div>
 
           <LoginForm />
-          <div className="flex justify-center mt-3">
-            <Button className="py-2!">Login</Button>
-          </div>
-
+         
           <div className="mt-5 flex justify-center gap-2">
             Don't have an account{" "}
             <Link className="text-primary underline" href="/signup">
