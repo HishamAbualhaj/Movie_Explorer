@@ -6,8 +6,10 @@ type InputProps = {
   placeholder?: string;
   value?: string;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
   error?: string;
   checked?: boolean;
+  name?: string;
   className?: string;
 };
 
@@ -17,7 +19,9 @@ function Input({
   placeholder,
   value,
   onChange,
+  onBlur,
   error,
+  name,
   className,
   checked,
 }: InputProps) {
@@ -28,9 +32,14 @@ function Input({
       <input
         type={type}
         placeholder={placeholder}
-        value={value}
+        value={value ?? ""}
         checked={checked}
-        onChange={onChange}
+        name={name}
+        onChange={(e) => {
+          onChange?.(e);
+          console.log("Input value", e.target.value);
+        }}
+        onBlur={onBlur}
         className={cn(
           "px-4 py-2 rounded-xl  text-white border outline-none transition",
           error ? "border-red-500" : "border-bg-light focus:border-primary",
@@ -39,7 +48,7 @@ function Input({
         )}
       />
 
-      {error && <span className="text-xs text-red-500">{error}</span>}
+      {error && <span className="text-sm mt-1 text-red-500">{error}</span>}
     </div>
   );
 }
