@@ -11,6 +11,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import StatCard from "./StatCard";
+import { useAnalytics } from "@/hooks/useAnalytics";
 
 const AnalyticsPage = () => {
   const COLORS = [
@@ -45,21 +46,27 @@ const AnalyticsPage = () => {
       { month: "Jun", views: 42000 },
     ],
   };
-  const { summary, moviesByGenre, viewsByMonth } = analyticsData;
+  const { data, isLoading } = useAnalytics();
   return (
     <div className="p-6 space-y-6 text-white">
-      <h1 className="text-2xl font-semibold text-white">Movie Explorer Analytics</h1>
+      <h1 className="text-2xl font-semibold text-white">
+        Movie Explorer Analytics
+      </h1>
 
+   {isLoading ? <div className="text-2xl animate-pulse">Loading data ... </div> : <>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-white">
-        <StatCard title="Total Movies" value={summary.totalMovies} />
+        <StatCard
+          title="Total Movies"
+          value={data?.summary.totalMovies ?? ""}
+        />
         <StatCard
           title="Total Views"
-          value={summary.totalViews.toLocaleString()}
+          value={data?.summary.totalViews.toLocaleString() ?? ""}
         />
-        <StatCard title="Avg Rating" value={summary.avgRating} />
+        <StatCard title="Avg Rating" value={(data?.summary.avgRating)?.toFixed(2) ?? ""} />
         <StatCard
           title="Total Reviews"
-          value={summary.totalReviews.toLocaleString()}
+          value={data?.summary.totalReviews?.toLocaleString() ?? "0"}
         />
       </div>
 
@@ -69,13 +76,13 @@ const AnalyticsPage = () => {
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
               <Pie
-                data={moviesByGenre}
+                data={data?.moviesByGenre}
                 dataKey="count"
                 nameKey="genre"
                 outerRadius={110}
                 label
               >
-                {moviesByGenre.map((_, index) => (
+                {data?.moviesByGenre.map((_, index) => (
                   <Cell key={index} fill={COLORS[index % COLORS.length]} />
                 ))}
               </Pie>
@@ -87,7 +94,7 @@ const AnalyticsPage = () => {
         <div className="rounded-2xl border-border bg-bg-light  shadow-sm p-4">
           <h2 className="mb-4 font-medium">Views per Month</h2>
           <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={viewsByMonth}>
+            <BarChart data={data?.viewsByMonth}>
               <XAxis dataKey="month" />
               <YAxis />
               <Tooltip />
@@ -95,7 +102,7 @@ const AnalyticsPage = () => {
             </BarChart>
           </ResponsiveContainer>
         </div>
-      </div>
+      </div></>}
     </div>
   );
 };
