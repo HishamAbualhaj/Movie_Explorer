@@ -1,14 +1,40 @@
+"use client";
 import Button from "@/components/ui/Button";
+import { useUserStore } from "@/stores/userStore";
+import { supabase } from "@/supabase/client";
+import getUserPlan from "@/utils/getUserPlan";
 import { CircleDotDashed } from "lucide-react";
+import { useEffect, useState } from "react";
 
 interface PlanCardProps {
   title: string;
   desc: string;
+  plan: "Free" | "Premium";
   price: string;
   type: "monthly" | "yearly";
   features: string[];
 }
-const PlanCard = ({ title, desc, price, type, features }: PlanCardProps) => {
+const PlanCard = ({
+  title,
+  desc,
+  price,
+  type,
+  features,
+  plan,
+}: PlanCardProps) => {
+  const { user } = useUserStore();
+  const [planDB, setPlanDB] = useState<"Free" | "Premium" | null>(null);
+
+  useEffect(() => {
+    if (!user?.id) return;
+
+    const fetchUserPlan = async () => {
+      const data = await getUserPlan(user?.id);
+      setPlanDB(data?.plan);
+      return data;
+    };
+    fetchUserPlan();
+  }, [user]);
   return (
     <div className="flex-1 border border-border/70 bg-bg-light rounded-lg p-10">
       <div className="text-white font-medium lg:text-2xl text-xl">{title}</div>
@@ -31,7 +57,13 @@ const PlanCard = ({ title, desc, price, type, features }: PlanCardProps) => {
         ))}
       </div>
       <div className="mt-6 flex items-center gap-3">
-        <Button>Choose Plan</Button>
+        {plan === planDB ? (
+          <div className="text-xl text-white font-medium px-4 py-2 rounded-md  bg-border">
+            Its your current plan
+          </div>
+        ) : (
+          <Button>Choose Plan</Button>
+        )}
       </div>
     </div>
   );

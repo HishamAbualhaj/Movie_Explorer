@@ -6,6 +6,7 @@ import { useState } from "react";
 
 type plan = {
   title: string;
+  plan: "Free" | "Premium";
   desc: string;
   price: string;
   type: "monthly" | "yearly";
@@ -15,6 +16,7 @@ const Plans = () => {
   const plansMonthly: plan[] = [
     {
       title: "Free Plan",
+      plan: "Free",
       desc: "Perfect for casual users who want to explore movies and trailers.",
       price: "0",
       type: "monthly",
@@ -30,6 +32,7 @@ const Plans = () => {
     },
     {
       title: "Premium Plan",
+      plan: "Premium",
       desc: "Ideal for movie enthusiasts who want unlimited access and ad-free experience.",
       price: "9.99",
       type: "monthly",
@@ -49,6 +52,7 @@ const Plans = () => {
   const plansYearly: plan[] = [
     {
       title: "Free Plan",
+      plan: "Free",
       desc: "Perfect for casual users who want to explore movies and trailers.",
       price: "0",
       type: "yearly",
@@ -64,6 +68,7 @@ const Plans = () => {
     },
     {
       title: "Premium Plan",
+      plan: "Premium",
       desc: "Ideal for movie enthusiasts who want unlimited access and ad-free experience.",
       price: "99.99",
       type: "yearly",
