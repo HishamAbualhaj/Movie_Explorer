@@ -1,5 +1,6 @@
+import { SideInfo } from "@/types/movie";
 export default function SideInformation() {
-  const infoItems = [
+  const infoItems: SideInfo[] = [
     { label: "Genres", value: "Thriller, Mystery, Drama" },
     { label: "Age", value: "16+" },
     { label: "Audio", value: "English" },
@@ -7,7 +8,7 @@ export default function SideInformation() {
   ];
 
   return (
-    <aside className="mt-8 rounded-2xl bg-neutral-900 border border-neutral-800 p-5 space-y-4">
+    <aside className="mt-8 rounded-2xl bg-neutral-900 border border-neutral-800 p-5 space-y-6">
       <div>
         <h3 className="text-lg font-semibold text-neutral-100">Release Year</h3>
         <p className="text-sm text-neutral-300">2022</p>

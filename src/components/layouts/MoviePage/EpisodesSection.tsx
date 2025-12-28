@@ -1,77 +1,101 @@
 "use client";
 import { useState } from "react";
-import { Lock, Play, Star, Plus, ArrowLeft, ArrowRight } from "lucide-react";
-import { EpisodeSectionProps } from "@/types/movie";
-import LockedEpisodes from "@/components/ui/LockedEpsoides";
+import { Star, Plus, ArrowLeft, ArrowRight } from "lucide-react";
+import { Review } from "@/types/movie";
 
-function Stars({ count = 4 }) {
+function Stars({ count = 4 }: { count?: number }) {
   return (
     <div className="flex text-yellow-400 mt-1">
-      {Array.from({ length: count }).map((_, i) => (
-        <Star key={"f" + i} size={16} fill="yellow" className="text-yellow-400" />
-      ))}
-      {Array.from({ length: 5 - count }).map((_, i) => (
-        <Star key={"e" + i} size={16} fill="none" className="text-yellow-400 opacity-40" />
+      {Array.from({ length: 5 }).map((_, i) => (
+        <Star key={i} size={16} className={i < count ? "text-yellow-400 fill-yellow-400" : "text-yellow-400 opacity-30"} />
       ))}
     </div>
   );
 }
 
-export default function EpisodeSection({ isSubscribed }: EpisodeSectionProps) {
+function StarRating({ value, onChange }: { value: number; onChange: (rating: number) => void }) {
+  return (
+    <div className="flex gap-1">
+      {[1, 2, 3, 4, 5].map((star) => (
+        <Star key={star} size={18} onClick={() => onChange(star)} className={`cursor-pointer transition ${star <= value ? "text-yellow-400 fill-yellow-400" : "text-yellow-400 opacity-30"}`} />
+      ))}
+    </div>
+  );
+}
+
+export default function EpisodesSection() {
   const seasons = [
     {
       season: 1,
       episodes: [
-        { number: 1, title: "Chapter One", duration: "48 min", locked: false },
-        { number: 2, title: "Chapter Two", duration: "53 min", locked: true },
-        { number: 3, title: "Chapter Three", duration: "50 min", locked: true },
-        { number: 4, title: "Chapter Four", duration: "44 min", locked: true },
-        { number: 5, title: "Chapter Five", duration: "56 min", locked: true },
+        { number: 1, duration: "48 min" },
+        { number: 2, duration: "53 min" },
+        { number: 3, duration: "50 min" },
+        { number: 4, duration: "44 min" },
+        { number: 5, duration: "56 min" },
       ],
     },
     {
       season: 2,
       episodes: [
-        { number: 1, title: "Chapter One", duration: "43 min", locked: true },
-        { number: 2, title: "Chapter Two", duration: "47 min", locked: true },
-        { number: 3, title: "Chapter Three", duration: "50 min", locked: true },
-        { number: 4, title: "Chapter Four", duration: "44 min", locked: true },
+        { number: 1, duration: "43 min" },
+        { number: 2, duration: "47 min" },
+        { number: 3, duration: "50 min" },
+        { number: 4, duration: "44 min" },
       ],
     },
     {
       season: 3,
       episodes: [
-        { number: 1, title: "Chapter One", duration: "42 min", locked: true },
-        { number: 2, title: "Chapter Two", duration: "47 min", locked: true },
-        { number: 3, title: "Chapter Three", duration: "50 min", locked: true },
-        { number: 4, title: "Chapter Four", duration: "44 min", locked: true },
+        { number: 1, duration: "42 min" },
+        { number: 2, duration: "47 min" },
+        { number: 3, duration: "50 min" },
+        { number: 4, duration: "44 min" },
       ],
     },
   ];
 
-  const cast = [1, 2, 3, 4, 5, 6];
-
-  const reviews = [
+  const [openSeason, setOpenSeason] = useState(1);
+  const [reviews, setReviews] = useState<Review[]>([
     {
       name: "Layla",
-      country: "From Egypt",
+      country: "Egypt",
       rating: 4,
-      oponion: "Wonderful series.",
+      opinion: "Wonderful series.",
     },
     {
       name: "Saed",
-      country: "From Lebanon",
+      country: "Lebanon",
       rating: 5,
-      oponion: "Amazing show!",
+      opinion: "Amazing show!",
     },
-  ];
-
-  const [openSeason, setOpenSeason] = useState(1);
+  ]);
   const [currentReview, setCurrentReview] = useState(0);
+  const [showForm, setShowForm] = useState(false);
+  const [form, setForm] = useState({
+    name: "",
+    country: "",
+    rating: 5,
+    opinion: "",
+  });
 
-  const handleNext = () => setCurrentReview((prev) => (prev + 1) % reviews.length);
+  const handleAddReview = () => {
+    if (!form.name || !form.opinion) return;
 
-  const handlePrev = () => setCurrentReview((prev) => (prev - 1 + reviews.length) % reviews.length);
+    setReviews([
+      ...reviews,
+      {
+        name: form.name,
+        country: form.country,
+        rating: form.rating,
+        opinion: form.opinion,
+      },
+    ]);
+
+    setForm({ name: "", country: "", rating: 5, opinion: "" });
+    setShowForm(false);
+    setCurrentReview(reviews.length);
+  };
 
   return (
     <section className="space-y-10 text-white mt-4 w-full">
@@ -86,87 +110,60 @@ export default function EpisodeSection({ isSubscribed }: EpisodeSectionProps) {
 
           {openSeason === s.season && (
             <div className="space-y-3 px-4 pb-4">
-              {s.episodes.map((ep) => {
-                const locked = ep.locked && !isSubscribed;
-
-                return (
-                  <div key={ep.number} className="flex items-center gap-4 p-3 bg-black/40 rounded-lg border border-white/10">
-                    <div className="w-24 h-16 md:w-28 md:h-20 bg-gray-700 rounded-md flex items-center justify-center">{locked ? <Lock size={22} className="text-gray-300" /> : <Play size={22} className="text-gray-300" />}</div>
-
-                    <div className="flex-1">
-                      <h3 className="font-semibold">Episode {ep.number}</h3>
-                      <p className="text-gray-300 text-sm">{ep.title}</p>
-                    </div>
-
-                    <span className="text-gray-400 text-sm whitespace-nowrap">{ep.duration}</span>
-                  </div>
-                );
-              })}
-
-              {!isSubscribed && <LockedEpisodes />}
+              {s.episodes.map((ep) => (
+                <div key={ep.number} className="flex justify-between items-center p-3 bg-black/40 rounded-lg border border-white/10">
+                  <h3 className="font-semibold">Episode {ep.number}</h3>
+                  <span className="text-gray-400 text-sm">{ep.duration}</span>
+                </div>
+              ))}
             </div>
           )}
         </div>
       ))}
 
-      {isSubscribed && (
-        <div className="bg-white/5 border border-white/10 rounded-xl p-5">
-          <h3 className="text-xl font-semibold mb-2">Description</h3>
-          <p className="text-gray-300 text-sm leading-6">When a young boy vanishes, a small town uncovers a mystery involving supernatural forces and one strange little girl.</p>
+      <div className="bg-white/5 border border-white/10 rounded-xl p-5 space-y-5">
+        <div className="flex justify-between items-center">
+          <h3 className="text-xl font-semibold">Reviews</h3>
+          <button onClick={() => setShowForm(!showForm)} className="flex items-center gap-2 bg-white/10 px-3 py-1 rounded-md text-sm">
+            <Plus size={16} /> Add Your Review
+          </button>
         </div>
-      )}
 
-      {isSubscribed && (
-        <div className="bg-white/5 border border-white/10 rounded-xl p-5">
-          <h3 className="text-xl font-semibold mb-3">Cast</h3>
-          <div className="flex gap-3 overflow-x-auto pb-2">
-            {cast.map((c, i) => (
-              <div key={i} className="w-16 h-16 bg-gray-700 rounded-md shrink-0"></div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {isSubscribed && (
-        <div className="bg-white/5 border border-white/10 rounded-xl p-5 space-y-5">
-          <div className="flex justify-between items-center">
-            <h3 className="text-xl font-semibold">Reviews</h3>
-
-            <button className="flex items-center gap-2 bg-white/10 px-3 py-1 rounded-md text-sm">
-              <Plus size={16} /> Add Your Review
+        {showForm && (
+          <div className="space-y-3 bg-black/40 p-4 rounded-lg border border-white/10">
+            <input placeholder="Your name" className="w-full bg-black/60 border border-white/10 rounded-md px-3 py-2 text-sm" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
+            <input placeholder="Country" className="w-full bg-black/60 border border-white/10 rounded-md px-3 py-2 text-sm" value={form.country} onChange={(e) => setForm({ ...form, country: e.target.value })} />
+            <div>
+              <p className="text-sm text-gray-300 mb-1">Your Rating</p>
+              <StarRating value={form.rating} onChange={(rating) => setForm({ ...form, rating })} />
+            </div>
+            <textarea placeholder="Write your review" rows={3} className="w-full bg-black/60 border border-white/10 rounded-md px-3 py-2 text-sm resize-none" value={form.opinion} onChange={(e) => setForm({ ...form, opinion: e.target.value })} />
+            <button onClick={handleAddReview} className="w-full bg-red-600 hover:bg-red-700 transition rounded-md py-2 text-sm font-medium">
+              Add Review
             </button>
           </div>
+        )}
 
-          <div className="relative">
-            <div className="bg-black/40 p-4 rounded-lg border border-white/10 space-y-2 max-w-sm mx-auto">
-              <h4 className="font-semibold">
-                {reviews[currentReview].name}
-                <span className="text-gray-400 text-sm"> {reviews[currentReview].country}</span>
-              </h4>
+        <div className="relative">
+          <div className="bg-black/40 p-4 rounded-lg border border-white/10 max-w-sm mx-auto">
+            <h4 className="font-semibold">
+              {reviews[currentReview].name}
+              {reviews[currentReview].country && <span className="text-gray-400 text-sm"> · {reviews[currentReview].country}</span>}
+            </h4>
+            <Stars count={reviews[currentReview].rating} />
+            <p className="text-gray-300 text-sm mt-2">{reviews[currentReview].opinion}</p>
+          </div>
 
-              <Stars count={reviews[currentReview].rating} />
-
-              <p className="text-gray-300 text-sm">{reviews[currentReview].oponion}</p>
-            </div>
-
-            <div className="flex justify-center items-center gap-4 mt-3">
-              <button className="p-2 bg-white/10 rounded-full" onClick={handlePrev}>
-                <ArrowLeft size={18} />
-              </button>
-
-              <div className="flex gap-2">
-                {reviews.map((_, i) => (
-                  <span key={i} className={`w-2 h-2 rounded-full ${i === currentReview ? "bg-white" : "bg-gray-500"}`}></span>
-                ))}
-              </div>
-
-              <button className="p-2 bg-white/10 rounded-full" onClick={handleNext}>
-                <ArrowRight size={18} />
-              </button>
-            </div>
+          <div className="flex justify-center items-center gap-4 mt-3">
+            <button className="p-2 bg-white/10 rounded-full" onClick={() => setCurrentReview((currentReview - 1 + reviews.length) % reviews.length)}>
+              <ArrowLeft size={18} />
+            </button>
+            <button className="p-2 bg-white/10 rounded-full" onClick={() => setCurrentReview((currentReview + 1) % reviews.length)}>
+              <ArrowRight size={18} />
+            </button>
           </div>
         </div>
-      )}
+      </div>
     </section>
   );
 }
