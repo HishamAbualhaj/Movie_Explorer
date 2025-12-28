@@ -4,7 +4,9 @@ import Input from "@/components/ui/Input";
 import { loginSchema } from "@/lib/validation/auth.schema";
 import { supabase } from "@/supabase/client";
 import { useFormik } from "formik";
+
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { toast } from "sonner";
 
 const LoginForm = () => {
@@ -60,32 +62,35 @@ const LoginForm = () => {
     if (error) return toast("Something went wrong");
 
     toast("Logined successfully");
-    return data;
+
+    return redirect("/");
   };
 
   return (
     <>
-      <div className="flex flex-col gap-5 mt-8">
-        {inputs.map((input, i) => (
-          <div key={i}>{input.component}</div>
-        ))}
-      </div>
-      <div className="flex mt-3 justify-between">
-        <div className="flex items-center flex-1 gap-2">
-          <div className="">
-            <Input className="p-0!" type="checkbox" />
-          </div>
-          <div className="text-text-muted flex-1">Remember me</div>
+      <form onSubmit={formik.handleSubmit}>
+        <div className="flex flex-col gap-5 mt-8">
+          {inputs.map((input, i) => (
+            <div key={i}>{input.component}</div>
+          ))}
         </div>
-        <Link href="forgotpass" className="text-primary underline">
-          Forgot password
-        </Link>
-      </div>
-      <div className="flex justify-center mt-3">
-        <Button type="submit" className="py-2!">
-          Login
-        </Button>
-      </div>
+        <div className="flex mt-3 justify-between">
+          <div className="flex items-center flex-1 gap-2">
+            <div className="">
+              <Input className="p-0!" type="checkbox" />
+            </div>
+            <div className="text-text-muted flex-1">Remember me</div>
+          </div>
+          <Link href="forgotpass" className="text-primary underline">
+            Forgot password
+          </Link>
+        </div>
+        <div className="flex justify-center mt-3">
+          <Button type="submit" className="py-2!">
+            Login
+          </Button>
+        </div>
+      </form>
     </>
   );
 };

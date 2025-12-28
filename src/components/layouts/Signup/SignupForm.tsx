@@ -86,16 +86,29 @@ const SignupForm = () => {
     },
   ];
 
-
-
   const signUp = async (email: string, password: string) => {
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
     });
+    if (error || !data.user) {
+      toast("Something went wrong");
+      return;
+    }
 
-    if (error) return toast("Something went wrong");
+    const { error: insertError } = await supabase.from("users").insert({
+      id: data.user.id, // SAME ID as auth user
+      name: formik.values.fullname,
+      email: data.user.email,
+      plan: "Free",
+      movies_watched: 0,
+    });
 
+    if (insertError) {
+      toast("User created but failed to save profile");
+      return;
+    }
+    
     toast("Signed up successfully");
 
     return redirect("/");
