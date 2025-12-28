@@ -4,6 +4,9 @@ import "../styles/globals.css";
 import { Manrope } from "next/font/google";
 import { Toaster } from "sonner";
 
+import UserProvider from "@/lib/UserProvider";
+import Providers from "@/lib/Providers";
+
 const manrope = Manrope({
   subsets: ["latin"],
   variable: "--font-manrope",
@@ -24,7 +27,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${manrope.variable}`}>
       <body className={`antialiased bg-bg`}>
-        {children} <Toaster position="top-center" theme="dark" />
+        <Providers>
+          <UserProvider>
+            {children} <Toaster position="top-center" theme="dark" />
+          </UserProvider>
+        </Providers>
       </body>
     </html>
   );
