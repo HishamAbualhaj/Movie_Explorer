@@ -37,7 +37,6 @@ function Input({
         name={name}
         onChange={(e) => {
           onChange?.(e);
-          console.log("Input value", e.target.value);
         }}
         onBlur={onBlur}
         className={cn(
